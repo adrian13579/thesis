@@ -1,2 +1,77 @@
 \chapter*{Introducción}\label{chapter:introduction}
 \addcontentsline{toc}{chapter}{Introducción}
+
+El cáncer de mama ocupa el lugar número 5 como causa de muerte en las mujeres a nivel
+mundial. En 2020, un estimado de  684,996 mujeres alrededor del mundo murieron de
+cáncer. Sin embargo, la detección temprana y posteriores tratamientos y 
+han permitido disminuir
+la tasa de mortalidad ha disminuido un 42\% desde 1989 a 2019\cite{breastcancer2020}
+. De ahí que sea crucial la identificación y clasificación temprana de cualquier 
+anomalía en el tejido mamario para el éxito en el tratamiento. Las mamografías de
+rayos X son exámenes que brindan información esencial para este tipo de diagnóstico,
+por lo que son consideradas entre las herramientas más efectivas 
+para la detección de este tipo de enfermedades.
+
+Las masas son un área de tejido mamario denso con una forma y bordes que hacen que se 
+vea diferente al resto del tejido en esta zona y aunque en la mayoría de los casos
+suelen ser benignas, pueden ser, en presencia de otras anomalías, un indicador 
+de cáncer \cite{massbreast}.
+En los últimos años se han utilizado técnicas del procesamiento de imágenes 
+digitales para el perfeccionamiento de la detección de características propias
+del cáncer y otros tipos de lesiones en las mamografías. 
+Esto permite identificar patrones y anomalías que
+sin previo procesamiento son muy difíciles de detectar para el ojo humano. 
+Uno de los métodos más extendidos es la Transformada Discreta de Wavelet.
+
+Desde que Alfréd Haar introdujo los conceptos fundamentales en 1909 \cite{haar} y años después
+Ingrid Daubechies los consolidó \cite{daubechies1992}, la Transformada Discreta de Wavelet 
+(DWT por sus siglas en inglés) ha sido la vanguardia en procesamiento de señales. Esta técnica 
+permite fusionar información temporal y espectral al mismo tiempo. 
+
+A lo largo de los
+años se han desarrollado y utilizado distintos tipos de \textit{wavelets} para 
+distintos problemas, algunas siendo mejores que otras para escenarios específicos. 
+Para esto se han desarrollado numerosas técnicas que permiten obtener una base 
+\textit{wavelet} a partir de las características del problema que se quiere
+resolver. Este método se conoce como \textit{wavelet} 
+adaptada (\textit{adapted wavelet}).
+
+Entre las técnicas más recientes derivadas de la DWT para el procesamiento de
+señales unidimensionales se encuentra 
+la Transformada Discreta de \textit{Shapelet} 
+(DST-I por sus siglas en inglés) presentada por primera vez en \cite{Guido2008} y
+posteriormente mejorada con su segunda versión (DST-II) en \cite{Guido2018}.
+De la misma forma que la DWT hace, la DST permite la localización 
+en tiempo de la frecuencia, sin embargo con una ventaja especial:
+también es capaz de medir le grado de similitud entre una forma predefinida
+y la señal analizada. Esto ha permitido la aparición de una posible nueva herramienta para 
+la detección de patrones en cualquier tipo de señales, incluidas imágenes.
+
+En la Facultad de Matemática y Computación, se han realizado numerosas
+investigaciones sobre el uso de 
+varias técnicas en señales biomédicas. En particular, sobre el procesamiento
+y detección de patrones en mamografías. El algoritmo propuesto en \cite{Guido2018} parece ser 
+una alternativa que posee ciertas ventajas con otros enfoques de Machine Learning 
+usados en los últimos años para este tipo de problemas y su validación y extensión para
+el caso bidimensional podría ser una herramienta muy útil en el procesamiento de señales
+biomédicas. Por este motivo y partiendo de la hipótesis de que la DST se 
+puede extender para el caso bidimensional y aplicar 
+para la detección de patrones en este tipo de
+señales, este trabajo tiene como objetivo general el mejoramiento del contraste
+en mamografías para la detección de masas. Para ello, se deben cumplir los 
+siguientes objetivos específicos:
+
+\begin{itemize}
+	\item Revisión del estado del arte sobre la construcción de wavelets adaptadas 
+	\item Evaluación numérica de algoritmos de optimización para estimar la \textit{wavelet}/(\textit{shapelet})
+		usando la metodología propuesta en la DST. En el artículo \cite{Guido2018} no se muestra
+		cuál algoritmo numérico es utilizado para resolver el sistema de ecuaciones no lineales, 
+		por lo cual este es un punto importante en la presente investigación.
+	\item Experimentación y validación de la DST en el caso de señales y patrones unidimensionales. Los resultados
+	que presentados en el artículo \cite{Guido2018} carecen de cierto rigor y evidencia científica, por lo 
+	que es necesario evaluar la eficacia del algoritmo.
+	\item Implementación y extensión de la DST para el caso bidimensional. Este sería el principal aporte sobre
+		la base del algoritmo propuesto en \cite{Guido2018}.
+	\item Aplicación del algoritmo en mamografías para la detección de masas y evaluación de los resultados.  
+	\item Implementación de un software (interfaz gráfica) para el uso del algoritmo propuesto.
+\end{itemize}
