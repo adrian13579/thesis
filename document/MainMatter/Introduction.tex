@@ -1,77 +1,83 @@
 \chapter*{Introducción}\label{chapter:introduction}
 \addcontentsline{toc}{chapter}{Introducción}
 
-El cáncer de mama ocupa el lugar número 5 como causa de muerte en las mujeres a nivel
-mundial. En 2020, un estimado de  684,996 mujeres alrededor del mundo murieron de
-cáncer. Sin embargo, la detección temprana y posteriores tratamientos y 
-han permitido disminuir
-la tasa de mortalidad ha disminuido un 42\% desde 1989 a 2019\cite{breastcancer2020}
-. De ahí que sea crucial la identificación y clasificación temprana de cualquier 
-anomalía en el tejido mamario para el éxito en el tratamiento. Las mamografías de
-rayos X son exámenes que brindan información esencial para este tipo de diagnóstico,
-por lo que son consideradas entre las herramientas más efectivas 
-para la detección de este tipo de enfermedades.
+Muchos procesos de la naturaleza se pueden modelar como señales. El sonido, la luz y la actividad
+cerebral de una persona son todos fenómenos que se representan a través de señales. Cada una con
+sus características únicas. Esto ha motivado el estudio y la creación de herramientas capaces
+de descubrir los secretos de las mismas. 
 
-Las masas son un área de tejido mamario denso con una forma y bordes que hacen que se 
-vea diferente al resto del tejido en esta zona y aunque en la mayoría de los casos
-suelen ser benignas, pueden ser, en presencia de otras anomalías, un indicador 
-de cáncer \cite{massbreast}.
-En los últimos años se han utilizado técnicas del procesamiento de imágenes 
-digitales para el perfeccionamiento de la detección de características propias
-del cáncer y otros tipos de lesiones en las mamografías. 
-Esto permite identificar patrones y anomalías que
-sin previo procesamiento son muy difíciles de detectar para el ojo humano. 
-Uno de los métodos más extendidos es la Transformada Discreta de Wavelet.
+En 1822, Joseph Fourier publica su \textit{ Théorie analytique de la chaleur } \cite{Fourier2009} donde introduce la idea de usar
+series matemáticas para analizar la conducción del calor en cuerpos sólidos. Esta teoría se conoce en
+la actualidad como Teoría de Fourier. En la misma, se plantea que una señal se puede representar como
+una serie, posiblemente infinita, de senos y cosenos. Este enfoque permite estudiar las diferentes 
+frecuencias presentes en una señal y la amplitud de las ondas que la conforman. A la herramienta que permite
+analizar el comportamiento de una función en el dominio de la frecuencia se le conoce en la actualidad como
+Transformada de Fourier.
 
-Desde que Alfréd Haar introdujo los conceptos fundamentales en 1909 \cite{haar} y años después
-Ingrid Daubechies los consolidó \cite{daubechies1992}, la Transformada Discreta de Wavelet 
-(DWT por sus siglas en inglés) ha sido la vanguardia en procesamiento de señales. Esta técnica 
-permite fusionar información temporal y espectral al mismo tiempo. 
+Las propiedades de esta transformada, la convierten en una herramienta muy poderosa para muchos escenarios. 
+Sin embargo, su principal desventaja es que cuando se pasa al dominio de las frecuencias, la información 
+temporal se pierde. La información de la frecuencia es fija en relación con el tiempo en una función 
+trigonométrica. Esto es el caso contrario al de muchas señales, como el sonido, donde las características
+cambian a lo largo del tiempo. 
 
-A lo largo de los
-años se han desarrollado y utilizado distintos tipos de \textit{wavelets} para 
-distintos problemas, algunas siendo mejores que otras para escenarios específicos. 
-Para esto se han desarrollado numerosas técnicas que permiten obtener una base 
-\textit{wavelet} a partir de las características del problema que se quiere
-resolver. Este método se conoce como \textit{wavelet} 
-adaptada (\textit{adapted wavelet}).
+En 1910 , Alfréd Haar introduce en su trabajo \textit{Zur Theorie der orthogonalen Funktionensysteme} \cite{Haar1910} un tipo 
+funciones que en la actualidad se conocen como wavelets, pero no es
+después de varias décadas que se les acuña este nombre. Estas funciones son como pequeñas ondas y a diferencia
+de las funciones trigonométricas, son de pequeña duración y localizadas en tiempo permitiendo obtener información tanto temporal como
+de frecuencia. Otra ventaja con respecto a la bases de Fourier, es que las bases wavelets no son únicas: 
+existen una amplia variedad, para todo tipo de aplicaciones. 
 
-Entre las técnicas más recientes derivadas de la DWT para el procesamiento de
-señales unidimensionales se encuentra 
-la Transformada Discreta de \textit{Shapelet} 
-(DST-I por sus siglas en inglés) presentada por primera vez en \cite{Guido2008} y
-posteriormente mejorada con su segunda versión (DST-II) en \cite{Guido2018}.
-De la misma forma que la DWT hace, la DST permite la localización 
-en tiempo de la frecuencia, sin embargo con una ventaja especial:
-también es capaz de medir le grado de similitud entre una forma predefinida
-y la señal analizada. Esto ha permitido la aparición de una posible nueva herramienta para 
-la detección de patrones en cualquier tipo de señales, incluidas imágenes.
+La propagación de las wavelets en la comunidad científica y académica es sorprendente.
+El surgimiento y consolidación de esta teoría a mediados de los 1980s, su conexión con el procesamiento
+de señales y bancos de filtros \cite{Mallat2008}, el diseño de una algoritmo eficiente para el cómputo de la transformada \cite{Mallat2008}
+y los aportes sobre el estudio de wavelet ortogonales \cite{daubechies1992} son algunos hechos que marcan su rápido desarrollo en
+pocos años.   
 
-En la Facultad de Matemática y Computación, se han realizado numerosas
-investigaciones sobre el uso de 
-varias técnicas en señales biomédicas. En particular, sobre el procesamiento
-y detección de patrones en mamografías. El algoritmo propuesto en \cite{Guido2018} parece ser 
-una alternativa que posee ciertas ventajas con otros enfoques de Machine Learning 
-usados en los últimos años para este tipo de problemas y su validación y extensión para
-el caso bidimensional podría ser una herramienta muy útil en el procesamiento de señales
-biomédicas. Por este motivo y partiendo de la hipótesis de que la DST se 
-puede extender para el caso bidimensional y aplicar 
-para la detección de patrones en este tipo de
-señales, este trabajo tiene como objetivo general el mejoramiento del contraste
-en mamografías para la detección de masas. Para ello, se deben cumplir los 
+Dejando un lado el aspecto puramente matemático, las wavelets también han tenido un gran impacto  
+en muchos campos y problemas. Por ejemplo, el algoritmo de compresión de imágenes JPEG 2000 está basado en
+bases wavelets \cite{Taubman2002}.
+
+En el campo de la medicina las wavelets también han hecho una incursión bastante importante. Trabajos como
+\cite{Bhattacharyya2018} y \cite{Sharma2020} muestran su aplicación en la detección de patrones y áreas de interés
+en electroencefalogramas (EEG) respectivamente. Estudios como \cite{Too2018} han hecho una comparación de las distintos
+tipos de wavelets en los EEG. 
+
+En el procesamiento de imágenes médicas también han sido 
+usadas en los útimos años, por ejemplo, en la compresión \cite{Bruylants2015}\cite{Alkinani2021}, en la eliminación de ruido
+ \cite{Wang2006}\cite{George2016}\cite{Patil2021} y para 
+mejorar el contraste \cite{Dikshit2022}.
+
+Las wavelets también han evolucionado y han sido la base para nuevos algoritmos que añaden nuevas capacidades.
+Tal es el caso de transformada discreta de \textit{shapelet} (DST) \cite{Guido2008} que está basada en la transformada discreta
+de wavelet (DWT), pero que añade información de forma en conjunto con el clásico análisis temporal y de frecuencia de la
+DWT. En un segundo trabajo se crea una segunda versión de este algoritmo, DST-II \cite{Guido2018}, y en \cite{Guido2021} se hacen 
+algunas modificacones para obtener simetría, creando una tercera versión conocida como DST-III.
+La DST, aunque poco estudiada, por sus propiedades de detección puede se una alternativa a otros algoritmos de
+detección de patrones usados en el estado del arte que están basados en \textit{machine learning} y que requieren
+de muchos datos para us correcto funcionamiento.
+
+En la Facultad de Matemática y Computación, también se trabaja con las wavelets y su transformada, sobretodo en
+investigaciones sobre el procesamiento de imágenes biomédicas. Las mamografías son uno de los tipos de imágenes
+con las que se trabaja en este centro. 
+Con la aparición del algoritmo de la DST-II, surge  
+una alternativa que posee ciertas ventajas con otros enfoques  
+usados en los últimos años para problemas de detección. Sin embargo, su uso solo ha sido estudiado para el 
+caso de señales unidimensionales, por lo que es de interés para el centro experimentar y explorar su extensión
+para el caso de señales bidimensionales. Por este motivo y partiendo de la hipótesis de que la DST se 
+puede extender para el caso bidimensional y aplicar para la detección de patrones en mamografías, este trabajo tiene como 
+objetivo general explorar el uso de la DST-II para detectar masas en mamografías. Para ello, se deben cumplir los 
 siguientes objetivos específicos:
 
 \begin{itemize}
 	\item Revisión del estado del arte sobre la construcción de wavelets adaptadas 
-	\item Evaluación numérica de algoritmos de optimización para estimar la \textit{wavelet}/(\textit{shapelet})
-		usando la metodología propuesta en la DST. En el artículo \cite{Guido2018} no se muestra
+	\item Evaluación numérica de algoritmos de optimización para estimar la \textit{wavelet}(\textit{shapelet})
+		usando la metodología propuesta en la DST-II. En el artículo \cite{Guido2018} no se muestra
 		cuál algoritmo numérico es utilizado para resolver el sistema de ecuaciones no lineales, 
 		por lo cual este es un punto importante en la presente investigación.
-	\item Experimentación y validación de la DST en el caso de señales y patrones unidimensionales. Los resultados
-	que presentados en el artículo \cite{Guido2018} carecen de cierto rigor y evidencia científica, por lo 
-	que es necesario evaluar la eficacia del algoritmo.
-	\item Implementación y extensión de la DST para el caso bidimensional. Este sería el principal aporte sobre
-		la base del algoritmo propuesto en \cite{Guido2018}.
+	\item Replicación de la DST-II en el caso de señales y patrones unidimensionales. 
+	\item Explorar ideas para la extensión de la DST-II para el caso bidimensional. 
 	\item Aplicación del algoritmo en mamografías para la detección de masas y evaluación de los resultados.  
 	\item Implementación de un software (interfaz gráfica) para el uso del algoritmo propuesto.
 \end{itemize}
+
+\section{Estructura del documento}
