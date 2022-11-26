@@ -208,7 +208,7 @@ partir de los coeficientes, se tiene la siguiente fórmula:
 
 \begin{figure}\label{fig:dwt-filterbanks-1D}
 	\includegraphics[scale=0.5]{Graphics/dwt-filterbanks-1D.png}
-	\caption{Representación gráfica del proceso de descomposición (análisis) y reconstrucción (síntesis) de la señal $f$. La $\uparrow$ corresponde la operación de \textit{upsampling} y la $\downarrow$ a la de \textit{downsampling}. }\label{fig:dwt-filterbanks-1D}
+	\caption{Representación gráfica del proceso de descomposición (análisis) y reconstrucción (síntesis) de la señal $f$. La $\uparrow$ corresponde la operación de \textit{upsampling} y la $\downarrow$ a la de \textit{downsampling} (Tomado de \cite{Recoskie2018LearningSO} pág. 25) }\label{fig:dwt-filterbanks-1D}
 \end{figure}
 
 La imagen \ref{fig:dwt-filterbanks-1D} muestra una representación gráfica de ambos bancos de filtros, es decir, 
@@ -235,10 +235,10 @@ sobre las filas y las columnas respectivamente. De forma similar se definen, $HR
 del filtro \textit{highpass}. En cada iteración del algoritmo de la DWT, se obtienen las siguientes componentes:
 
 \begin{itemize}
-	\item Coeficientes de aproximación: $LC(LR(X))$
-	\item Coeficientes de detalle horizontal: $LC(HR(X))$
-	\item Coeficientes de detalle vertical: $HC(LR(X))$ 
-	\item Coeficientes de detalle diagonal: $HC(HR(X))$
+	\item Coeficientes de aproximación LL: $LC(LR(X))$
+	\item Coeficientes de detalle horizontal LH: $LC(HR(X))$
+	\item Coeficientes de detalle vertical HL: $HC(LR(X))$ 
+	\item Coeficientes de detalle diagonal HH: $HC(HR(X))$
 \end{itemize}
 
 \begin{figure}
@@ -327,22 +327,22 @@ de descomposición y de reconstrucción de una señal \cite{misiti2007wavelets}.
 wavelets. Una para cada proceso. De este modo es posible buscar las propiedades más deseadas para cada uno de
 los procesos por separado en cada wavelet.
 
-Una de las técnicas más conocidas para la construcción de bases wavelet es el método de \textit{lifting}, presentado
+Una de las técnicas más conocidas para la construcción de bases wavelet es el método \textit{lifting}, presentado
 por primera vez en \cite{lifting}. En este trabajo se propone una nueva generación de wavelets, más general que no son necesariamente traslaciones 
 o dilataciones, pero que siguen gozando de todas las poderosas propiedades de las wavelets de primera generación.
 A estas nuevas wavelets se les llama de segunda generación. 
 
-El esquema de \textit{lifting} es una herramienta  bastante poderosa para la construcción de bases wavelets. 
-Un filtro finito, llamado \textit{lifitng step}, es usado para 
+El esquema \textit{lifting} es una herramienta  bastante poderosa para la construcción de bases wavelets. 
+Un filtro finito, llamado \textit{lifting step}, es usado para 
 generar un nuevo par de filtros a partir de otro par existente. Múltiples \textit{lifting steps} pueden ser aplicados
 consecutivamente. Dos propiedades interesantes de este esquema son la preservación de la biortogonalidad
-y que cualquier wavelet con filtros finitos puede se expresada como una secuencia de \textit{lifitn steps}.
+y que cualquier wavelet con filtros finitos puede se expresada como una secuencia de \textit{lifting steps}.
 Estas propiedades hacen de esta herramienta muy poderosa en la generación de nuevas wavelets.
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{Graphics/wavelet-properties.png}
-	\caption{Algunos ejemplos de familias de wavelets y sus propiedades. Imagen tomada de \cite{misiti2007wavelets}}\label{fig:wavelets-properties}
+	\caption{Algunos ejemplos de familias de wavelets y sus propiedades (Tomado de \cite{misiti2007wavelets}) pág. 93}\label{fig:wavelets-properties}
 \end{figure}
 
 \subsection{Wavelets adaptadas a los datos}\label{adapted-wavelets}
@@ -354,7 +354,7 @@ La construcción de una wavelet que posea las propiedades que serían idóneas p
 vía de solución. Este es una línea que se ha trabajado en el área de las wavelets, proponiéndose varias
 técnicas para la obtención de nuevas funciones basadas en los datos.
 
-El esquema de \textit{lifiting} ha sido usado en conjunción con otros algoritmos para obtener wavelets optmizadas para un conjunto de datos.
+El esquema \textit{lifting} ha sido usado en conjunción con otros algoritmos para obtener wavelets optmizadas para un conjunto de datos.
 En \cite{Grasemann2004} se propone un método basado en un algoritmo genético coevolucionario. Este algoritmo codifica las wavelets
 como una secuencia de \textit{lifting steps}, para luego ir seleccionando y generando los mejores 
 candidatos.

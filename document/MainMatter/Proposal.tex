@@ -65,15 +65,15 @@ es el siguiente:
 		donde $b=0,1,\dotsc,\frac{N}{2}-3$.
 	\item \textbf{Paso 3:} Definir las condiciones de otogonalidad
 		\begin{equation}\label{eq:orthogonality}
-			\sum_{0}^{N-1} q_{k}q_{k+2l} = \delta_{0,1}
+			\sum_{k=0}^{N-1} q_{k}q_{k+2l} = \delta_{0,1}
 		\end{equation}
 		donde $\delta$ es el delta de Dirac y $l\in Z$.
 	\item \textbf{Paso 4:} Agregar las condiciones de \textit{matching}
-		\begin{equation}\label{eq:matching-1}
-			\sum_{0}^{N-1} q_{k}m_{k} = 0
+		\begin{equation}\label{eq:original-matching-1}
+			\sum_{k=0}^{N-1} q_{k}m_{k} = 0
 		\end{equation}
-		\begin{equation}\label{eq:matching-2}
-			\sum_{0}^{N-1} q_{k}m_{k+1} = 0
+		\begin{equation}\label{eq:original-matching-2}
+			\sum_{k=0}^{N-1} q_{k}m_{k+1} = 0
 		\end{equation}
 	\item \textbf{Paso 5:} Agrupar todas las ecuaciones definidas anteriormente y resolver el sistema de ecuaciones
 		no lineales $N$ ecuaciones y $N$ incógnitas para obtener el filtro $q[\cdot]$.
@@ -84,7 +84,7 @@ es el siguiente:
 \end{itemize}
 
 En esencia la DST-II corresponde a la transformada de Daubechies, cambiando de de los momentos nulos por las
-condiciones de \textit{matching},\ref{eq:matching-1} y \ref{eq:matching-2}. Estas están definidas de forma tal que el
+condiciones de \textit{matching},\ref{eq:original-matching-1} y \ref{eq:original-matching-2}. Estas están definidas de forma tal que el
 producto inherente como resultado del cómputo de la DST-II, basado en el algoritmo de Mallat, reaccione ante 
 la presencia del patrón $m[\cdot]$.
 
@@ -106,7 +106,7 @@ significativa para resolver sistemas de ecuaciones no lineales es la necesidad d
 una matriz y resolver un sistema lineal de tamaño $n\times n$ \cite{Burden2016}. 
 
 Existe otra clase de algoritmos llamados métodos de Newton inexactos o cuasi-Newton. Estos métodos reemplazan la
-matriz jacobian en el método de Newton con una matriz de aproximación que se actualiza fácilmente en 
+matriz jacobiana en el método de Newton con una matriz de aproximación que se actualiza fácilmente en 
 cada iteración. La desventaja de estos métodos es que la convergencia cuadrática del método de Newton se pierde,
 al ser reemplazada, en general, mediante una convergencia superlineal. Otra desventaja es que a diferencia 
 del método de Newton, los métodos quasi-Newton no se autocorrigen. En muchos casos, el método de Newton
@@ -133,20 +133,20 @@ al óptimo, actúa más como el método de Gauss-Newton \cite{madsen2004methods}
 El método híbrido de Powell, de forma similar a Levenberg-Marquardt es una combinación de gradiente descendiente y Gauss-Newton.
 Sin embargo, en este la selección es controlada por el uso de una región de confianza \cite{madsen2004methods}.
 
-\section{Heurística para la detección}
+\section{Medida de similitud para la detección}
 
 Al estar basada en la DWT, el análisis temporal y de frecuencia de la DST-II es exactamente igual que al de la DWT.
 Sin embargo, la mayor novedad de este algoritmo, es la capacidad de reaccionar ante la presencia de 
 patrones específicos, facilitando su detección. El proceso es bastante sencillo :
 mientras más cercano a $0$ esté el coeficiente de la parte \textit{second-rated} de la transformada, más se parece
 la sección de la señal analizada $s[\cdot]$ al patrón $m[\cdot]$ que se quiere detectar. En \cite{Guido2018} se
-propone la siguiente función para la detección de las muestras que cumplan con estas características:
+propone la siguiente medida de similitud para la detección de las muestras que cumplan con estas características:
 
 \begin{equation}
 	\mathbb{S} = e^{-{(|DST-II(s[\cdot])|)}^{\alpha}} \ 0 < \alpha \leq 1
 \end{equation}\label{eq:s-heuristic}
 
-Mientras cercano sea $\mathbb{S}$ a 0 o 1, respectivamente, menos o más se parece el segmento de
+Mientras más cercano sea $\mathbb{S}$ a 0 o 1, respectivamente, menos o más se parece el segmento de
 la señal analizada $s[\cdot]$ a $m[\cdot]$.
 
 Según \cite{Guido2018}, para el primer nivel de la DST-II, si $\mathbb{S}_{_k}=1$ para algún $k=0,1,2,\ldots$
@@ -155,34 +155,17 @@ que el patrón empieza en la posición $s_{2k-1}$ o $s_{2k}$. Un aspecto importa
 ceros en la DST-II, o unos en $\mathbb{S}$, solo se lleva a cabo en la segunda sub-banda de la transformada,
 es decir, en el segmento perteneciente a la \textit{second-rated}.
 
-\section{Reajuste en las condiciones de \textit{matching}}
-
-La DST-II está diseñada para que las condiciones de \textit{matching} \ref{eq:matching-1} \ref{eq:matching-2} 
-permitan obtener un valor lo más cercano a $0$ cuando se realiza la convolución entre el filtro $q[\cdot]$
-y el patrón $m[\cdot]$. Sin embargo, es necesario hacer un pequeño cambio a las ecuaciones \ref{eq:matching-1}
-para que esto funcione \ref{eq:matching-1}.
-
-De \ref{eq:mallat-details} se tiene que la convolución se hace multiplicando el filtro de atrás hacia adelante 
-con la sección de la señal que se está procesando. Por lo que en vez usar las ecuaciones \ref{eq:matching-1}
-y \ref{eq:matching-2} se usaron las siguientes:
-
-\begin{equation}\label{eq:matching-1}
-	\sum_{0}^{N-1} q_{-k}m_{k} = 0
-\end{equation}
-\begin{equation}\label{eq:matching-2}
-	\sum_{0}^{N-1} q_{-k}m_{k+1} = 0
-\end{equation}
-
 \section{Ejemplo numérico del diseño de la DST-II}
 
 \begin{figure} 
 	\centering
 	\includegraphics[scale=0.8]{Graphics/guido20118-pattern.png}
-	\caption{Patrón usado en \cite{Guido2018} con valores [0.20, 0.50, 0.45, 0.85, 0.80, -0.75, 0.25, 0.20, 0.55]}\label{fig:Guido2018-pattern}
+	\caption{Patrón usado en \cite{Guido2018} con valores [0.20, 0.50, 0.45, 0.85, 0.80, -0.75, 0.25, 0.20, 0.55]} \label{fig:Guido2018-pattern}
 \end{figure}
 
 En esta sección se describe paso a paso la construcción del filtro $q[\cdot]$ para la detección del
-patrón $m[\cdot]$ que se muestra en \ref{fig:Guido2018-pattern}. 
+patrón $m[\cdot]$ que se muestra en \ref{fig:Guido2018-pattern}. El método numérico usado para hallar
+la solución al sistema de eucaciones no lineales es Levenberg-Marquardt.
 
 Según los pasos descritos en \ref{algoritmo:dst-2}, las ecuaciones del sistema son las siguientes:
 
@@ -210,10 +193,10 @@ Según los pasos descritos en \ref{algoritmo:dst-2}, las ecuaciones del sistema 
 		\end{equation}
 	\item \textbf{Paso 4:} Las condiciones de \textit{matching} 
 		\begin{equation}
-			0.2q_0 + 0.2q_1 + 0.5q_2 + 0.45q_3 + 0.85q_4 + 0.8q_5 - 0.75q_6 + 0.25q_7 = 0
+			0.2q_0 + 0.5q_1 + 0.45q_2 + 0.85q_3 + 0.8q_4 - 0.75q_5 + 0.25q_6 + 0.2q_7
 		\end{equation}
 		\begin{equation}
-			0.55q_0 + 0.5q_1 + 0.45q_2 + 0.85q_3 + 0.8q_4 - 0.75q_5 + 0.25q_6 + 0.2q_7 = 0
+			0.5q_0 + 0.45q_1 + 0.85q_2 + 0.8q_3 - 0.75q_4 + 0.25q_5 + 0.2q_6 + 0.55q_7
 		\end{equation}
 	\item \textbf{Paso 5:} Agrupando todas las ecuaciones se obtiene el sistema de ecuaciones no lineales
 		\begin{equation}\label{eq:system}
@@ -224,8 +207,8 @@ Según los pasos descritos en \ref{algoritmo:dst-2}, las ecuaciones del sistema 
 						q_0q_2 + q_1q_3 + q_2q_4 + q_3q_5 + q_4q_6 + q_5q_7 = 0 \\
 						q_0q_4 + q_1q_5 + q_2q_6 + q_3q_7 = 0 \\
 						q_0q_6 + q_1q_7 = 0 \\
-						0.2q_0 + 0.2q_1 + 0.5q_2 + 0.45q_3 + 0.85q_4 + 0.8q_5 - 0.75q_6 + 0.25q_7 = 0 \\
-						0.55q_0 + 0.5q_1 + 0.45q_2 + 0.85q_3 + 0.8q_4 - 0.75q_5 + 0.25q_6 + 0.2q_7 = 0 \\
+						0.2q_0 + 0.5q_1 + 0.45q_2 + 0.85q_3 + 0.8q_4 - 0.75q_5 + 0.25q_6 + 0.2q_7 \\
+						0.5q_0 + 0.45q_1 + 0.85q_2 + 0.8q_3 - 0.75q_4 + 0.25q_5 + 0.2q_6 + 0.55q_7 \\
 					\end{array}
 				\right.
 			\end{equation}
@@ -235,8 +218,9 @@ Luego de resolver el \ref{eq:system} se obtiene como solución el siguiente vect
 
 $$
 	\begin{array}{lcl}
-		q[\cdot] = \{ 0.02135806, 0.23273233,  0.08239873, -0.80643852,  0.5152966,  -0.11358755, \\
-		0.09865178, -0.00905336 \}
+		q[\cdot] = \{ 0.6847497581435479, 0.22696568380592325, 0.14564494606257186,  \\ 
+					-0.6216329207785873, 0.18823424339300499, -0.0553137649474309, \\ 
+					-0.05756235031820252, 0.1736641627827206 \}
 	\end{array}
 $$
 
@@ -244,25 +228,25 @@ Una vez que se tiene el valor de $q[\cdot]$ se procede a calcular el resto de lo
 
 $$
 	\begin{array}{lcl}
-		p[\cdot] = \{ 0.00905336326604119, 0.09865177980292716, 0.11358755363902126,\\
-			0.5152966037304808, 0.8064385205411737, 0.08239872502860128, \\
-		-0.23273232888422687, 0.021358056806980778 \}
+		p[\cdot] = \{  -0.17366416278272068, -0.05756235031820252, 0.0553137649474309, \\ 
+					0.18823424339300499, 0.6216329207785873, 0.14564494606257186, \\
+					-0.22696568380592325, 0.684749758143547\}
 	\end{array}
 $$
 
 $$
 	\begin{array}{lcl}
-		\bar p[\cdot] = \{ 0.00905336326604119, 0.021358056806980778, -0.23273232888422687, \\
-			0.08239872502860128, 0.8064385205411737, 0.5152966037304808,  \\ 
-		0.11358755363902126, 0.09865177980292716 \}
+		\bar p[\cdot] = \{ -0.17366416278272068, 0.6847497581435479, -0.22696568380592325, \\ 
+							0.14564494606257186, 0.6216329207785873, 0.18823424339300499, \\ 
+							0.0553137649474309, -0.05756235031820252 \}
 	\end{array}
 $$
 
 $$
 	\begin{array}{lcl}
-		\bar q[\cdot] = \{ 0.021358056806980778, -0.00905336326604119, 0.09865177980292716, \\
-			-0.11358755363902126, 0.5152966037304808, -0.8064385205411737, \\
-		0.08239872502860128, 0.23273232888422687 \}
+		\bar q[\cdot] = \{ -0.6847497581435479, 0.22696568380592325, -0.14564494606257186,\\
+			-0.6216329207785873, -0.18823424339300499, -0.0553137649474309, \\ 
+		0.05756235031820252, 0.17366416278272068 \}
 	\end{array}
 $$
 
@@ -270,8 +254,6 @@ Un vez se obtienen los filtros, es posible realizar la DST-II sobre cualquier se
 del patrón $m[\cdot]$. Como paso opcional si se quiere obtener las funciones \textit{major} y \textit{minor}
 se procedería a resolver los sistemas formados por las eucaciones  $\Gamma(x)=\sum_k p_k \Gamma(2N-k)$ y 
 $\Theta(x)=\sum_k q_k \Theta(2N-k)$.
-
-\section{Ejemplo de la aplicación de la DST-II}
 
 Para demostrar el uso de las DST-II en la detección de patrones y formas, el patrón $m[\cdot]$ \ref{fig:Guido2018-pattern} fue
 insertado en la señal $s[\cdot]$, dando como resultado la siguiente señal \ref{fig:example-guido-signal}:
@@ -285,128 +267,144 @@ insertado en la señal $s[\cdot]$, dando como resultado la siguiente señal \ref
 	\right.
 \end{equation}
 
-
-\begin{figure}\label{fig:example-guido-signal}
+\begin{figure}
 	\centering
-	\includegraphics[scale=0.8]{Graphics/example-guido-signal.png}
-	\caption{}
+	\includegraphics[scale=0.8]{Graphics/example-guido-signal-dst-s-wrong-matching.png}
+	\caption{DST-II y medida $\mathbb{S}$ usando los las ecuaciones de \textit{matching} \ref{eq:original-matching-1} \ref{eq:original-matching-2}} \label{fig:example-guido-signal-dst-s-wrong-matching}
 \end{figure}
 
-La figura \ref{fig:example-guido-signal-dst-s} muestra el resultado de la DST-II sobre la señal $s[\cdot]$.
+
+La figura \ref{fig:example-guido-signal-dst-s-wrong-matching} muestra el resultado de la DST-II sobre la señal $s[\cdot]$.
 El gráfico color marrón es la sección \textit{second-rated} del resultado de ls DST-II sobre $s[\cdot]$.
-El de color azul conrresponde a la heurística $S$ sobre los coeficiente de la \textit{second-rated}. 
-La presencia de $m[\cdot]$ se confirma en la posición $22$ de la DST-II y de $S$, donde se alcanzan valores
-cercanos a $0$ y a $1$ respectivamente. Este coeficiente corresponde aproximadamente a la posición 
-$44$ en la señal original. Como se puede apreciar, existe un ligero desplazamiento en la posición donde se detecta $m[\cdot]$,
-pero no es de gran tamaño.
+El de color azul conrresponde a la medida $\mathbb{S}$ sobre los coeficiente de la \textit{second-rated}. 
+Sin embargo, en este gráfico se puede observar que en $\mathbb{S}$ no existe un pico que sobresale del resto del
+gráfico, a diferencia de como sucede en el ejmplo de \cite{Guido2018}. De hecho, el punto más alto
+se alcanza en el coeficiente número 27, que no corresponde con la ubicación del patrón en la señal 
+original. Además, en esta posición $\mathbb{S}=0.5046662398523433$, lo cual implica que no se detecta el patrón.
 
+\subsection{Reajuste en las condiciones de \textit{matching}}
 
-\begin{figure}\label{fig:example-guido-signal-dst-s}
+La DST-II está diseñada para que las condiciones de \textit{matching} \ref{eq:matching-1} \ref{eq:matching-2} 
+permitan obtener un valor lo más cercano a $0$ cuando se realiza la convolución entre el filtro $q[\cdot]$
+y el patrón $m[\cdot]$. Sin embargo, es necesario hacer un pequeño cambio a las ecuaciones \ref{eq:matching-1}
+para que esto funcione \ref{eq:matching-1}.
+
+De \ref{eq:mallat-details} se tiene que la convolución se hace multiplicando el filtro de atrás hacia adelante 
+con la sección de la señal que se está procesando. Por lo que en vez usar las ecuaciones \ref{eq:matching-1}
+y \ref{eq:matching-2} se usan las siguientes:
+
+\begin{equation}\label{eq:matching-1}
+	\sum_{k=1}^{N} q_{N-k}m_{k} = 0
+\end{equation}
+\begin{equation}\label{eq:matching-2}
+	\sum_{k=1}^{N} q_{N-k}m_{k-1} = 0
+\end{equation}
+
+Usando estas nuevas fórmulas, se obtienen las siguientes ecuaciones para el ejemplo del patrón \ref{fig:Guido2018-pattern}:
+
+\begin{equation}
+	0.2q_0 + 0.25q_1 - 0.75q_2 + 0.8q_3 + 0.85q_4 + 0.45q_5 + 0.5q_6 + 0.2q_7
+\end{equation}
+\begin{equation}
+	0.55q_0 + 0.2q_1 + 0.25q_2 - 0.75q_3 + 0.8q_4 + 0.85q_5 + 0.45q_6 + 0.5q_7
+\end{equation}
+
+Después de sustuir las ecuaciones de \textit{matching} anteriores en \ref{eq:system} se resuelve el sistema
+de ecuaciones no lineales y se obtiene la siguiente solución:
+
+$$
+	\begin{array}{lcl}
+		q[\cdot] = \{ 0.8505813325748994, -0.24960592535063272, 0.22199103863909603,\\ 
+			0.29414386817594423, -0.10204570231699035, -0.25121801175290576, \\ 
+		0.019678016661321896, 0.06705671594416668 \}
+	\end{array}
+$$
+
+Luego, a partir de $q$ se obtienen:
+
+$$
+	\begin{array}{lcl}
+		p[\cdot] = \{ -0.06705671594416668, 0.019678016661321896, 0.25121801175290576,\\ 
+			-0.10204570231699035, -0.29414386817594423, 0.22199103863909603, \\ 
+			0.24960592535063272, 0.8505813325748994\}
+	\end{array}
+$$
+
+$$
+	\begin{array}{lcl}
+		\bar p[\cdot] = \{ -0.06705671594416668, 0.8505813325748994, 0.24960592535063272,\\ 
+			0.22199103863909603, -0.29414386817594423, -0.10204570231699035,\\ 
+		0.25121801175290576, 0.019678016661321896 \}
+	\end{array}
+$$
+
+$$
+	\begin{array}{lcl}
+		\bar q[\cdot] = \{ -0.8505813325748994, -0.24960592535063272, -0.22199103863909603,\\
+			0.29414386817594423, 0.10204570231699035, -0.25121801175290576, \\ 
+		-0.019678016661321896, 0.06705671594416668 \}
+	\end{array}
+$$
+
+\begin{figure} 
 	\centering
 	\includegraphics[scale=0.8]{Graphics/example-guido-signal-dst-s.png}
-	\caption{}
+	\caption{DST-II y medida $\mathbb{S}$ usando los las ecuaciones de \textit{matching} \ref{eq:matching-1} \ref{eq:matching-2}} \label{fig:example-guido-signal}
 \end{figure}
 
+Usando los filtros anterioes se obitiene el resultado mostrado en la figura \ref{fig:example-guido-signal-dst-s}. 
+En este caso la presencia de $m[\cdot]$ se confirma en la posición $22$ de la DST-II y de $\mathbb{S}$, donde se alcanzan valores
+cercanos a $0$ y a $1$ respectivamente ($\mathbb{S}=0.9773467949250059$). Este coeficiente corresponde aproximadamente a la posición 
+$44$ en la señal original. Como se puede apreciar, existe un ligero desplazamiento en la posición donde se detecta $m[\cdot]$,
+pero no es de gran tamaño. De hecho si se toma el coeficiente anterior, la detección es exacta.
 
 \section{Extensión de la DST-II para señales 2D}\label{section:2d}
 
 La DST-II fue diseñada para el caso unidimensional. En este trabajo se busca experimentar sobre las formas en que
-este algoritmo se puede extender al caso de de señales de bidimensionales. 
+este algoritmo se puede extender al caso de señales de bidimensionales. 
+En el caso 2D, el patrón $m[\cdot]$ sería en realidad
+una matriz $M$ y por tanto se tomarían filas o columnas del mismo para construir la shapelet.
+De forma similar la señal $s[\cdot]$ pasa a ser una matriz $X$.
+Dado que se está trabajando con imágenes y secciones de las mismas se va a usar de ahora en adelante la notación
+$[A:B,C:D]$ para describir una región o porción de la imagen. $A$ y $B$ representan el intervalo en las filas
+comprendidos entre dichos valores. De forma similar lo hacen $C$ y $D$, pero para las columnas.
 A continuación se exponen algunas ideas sobre la extensión de la DST-II para imágenes y la detección de patrones en este tipo de señales.
 
 \subsection{Primer enfoque: DST-II por filas y luego columnas}
 
-En \ref{section:dwt-2d} se explica como se extiende la DWT para el caso de dos dimensiones. Dado que la DST-II comparte 
-muchas de las características de la DWT, se podría extender de esta misma forma para el caso bidimensional.
-Cuando se busca extender la DST-II para el caso de imágenes lo que se quiere aprovechar es su capacidad
-de detectar formas y patrones. 
-
-La heurística \ref{eq:s-heuristic} se puede, en principio, extender para el caso de señales bidimensionales también.
-Solo que este caso una mejor forma de visualizar la detección sería con un mapa de colores para cada uno de los coeficientes
-de la transformada.
-
-Dado que se está trabajando con imágenes y secciones de las mismas se va a usar de ahora en adelante la notación
-$[A:B,C:D]$ para describir una región o porción de la imagen. $A$ y $B$ representan el intervalo en las filas
-comprendidos entre dichos valores. De forma similar lo hacen $C$ y $D$, pero para las columnas.
-
-
-
-\begin{figure}\label{fig:gaussian-example-dst}
-	\centering
-	\subfigure[Imagen]{\includegraphics{Graphics/gaussian-example-dst.png}}
-	\subfigure[Patrón]{\includegraphics{Graphics/example-line-pattern-dst.png}}
-	\caption{Imagen de una gaussiana y sección correspiende a los pixeles [30, 25:40] }
-\end{figure}
-
-\begin{figure*}\label{fig:dst-gaussian-example}
-\begin{multicols}{2}
-    \includegraphics[width=\linewidth]{Graphics/gaussian-example-aproximation-dst.png}\par 
-    \includegraphics[width=\linewidth]{Graphics/gaussian-example-horizontal-dst.png}\par 
-    \end{multicols}
-\begin{multicols}{2}
-    \includegraphics[width=\linewidth]{Graphics/gaussian-example-vertical-dst.png}\par
-    \includegraphics[width=\linewidth]{Graphics/guassian-example-diagonal-dst.png}\par
-\end{multicols}
-\caption{ Resultado de evaluar la función $S$ sobre cada de uno de los coeficiente de la DST-II contruida a partir del 
-patrón \ref{fig:gaussian-example-dst} y sobre la misma imagen de donde se extrae el patrón}
-\end{figure*}
-
-La figura \ref{fig:dst-gaussian-example} muestra el resultado de hacer la DST-II siguiendo el procedimiento \ref{algoritmo:dst-2}.
-El patrón tomado para la constucción de la DST-II es mostrado en la figura \ref{fig:dst-gaussian-example} que corresponde
-a la sección $[30, 25:40]$ de la imagen. La transformada se realiza luego sobre esta propia imagen. El resultado que
-es luego evaluado en la función $S$, para la detección de la posición del patrón.
+La DST-II comparte muchas de las características de la DWT. Ambas transformadas se pueden obtener a través del
+algoritmo de Mallat. Por este motivo una primera idea para extender la DWT-II para señales de dos dimensiones
+es usar la descomposición no estándar descrita en \ref{section:dwt-2d}.
+Como resultado de la misma se obtendrían cuatro componentes. 
 
 Los coeficientes de aproximación no son de interés para la detección. Nótese que la DST-II realizaba la detección en la sección
-\textit{second-rated}, que este caso correspondería a los coeficientes de detalle. En los coeficientes de detalle horizontal 
-y vertical se ven puntos que sobresalen. Sin embargo, ninguno corresponde a posiciones donde está localizado el patrón 
-a partir del cual se construyó la shapelet. En el caso de los coeficiente de detalle diagonal, se detecta un punto por la
-herística $S$ en la posición $(13,18)$ con valor $0.7239220309171849$. Este coeficiente corresponde a la posición
-$(26,36)$ de la imagen original. La ubicación real del patrón es la fila $30$, entre las columnas $25$ y $40$. Por lo que
-parece ser al menos el resultado de la heurística sobre los coeficientes de detalles diagonal da como resultado una 
-aproximación de donde termina el patrón. 
-
+\textit{second-rated}, que corresponde a los coeficientes de detalles en la DWT. Por tanto, solo se analizaran para
+la detección las componentes LH,HL y HH.
+En este enfoque, sea $X$ la señal de entrada (imagen) con dimensiones $n\times m$, entonces al realizar el algoritmo de descomposición estándar
+cada una de los componentes tiene dimensiones $n/2 \times m/2$. Luego, sea $c_{i,j}$ un coeficiente
+ubicado en la fila $i$ y la columna de $j$ de cualquiera de las componentes, el mismo corresponde
+a la posición $(2i,2j)$ de $X$.
 
 \subsection{Segundo enfoque: DST-II solamente por filas (columnas)}
 
-Otra forma de extender la DST-II al caso de señales bastante sencilla  es realizar la transformada 
-una sola vez, es decir, por filas o por columnas solamente.
+Dado que el principal objetivo de extender la DST-II para imágenes es aprovechar su capacidad de detección, la cual funciona 
+en el caso unidimensional, otra forma de usarla en señales de dos dimensiones es simplemente hacer la transformada
+por filas o columnas solamente.
+Si se usa este enfoque se pueden tomar secciones horizontales y verticales del patrón que se quiere detectar para 
+la construcción de las shapelets y obtener información en filas y columnas.
 
-El primer paso sería seleccionar la señal o patrón que se quiere detectar, y la dirección.
-Tomando la misma la sección horizontal del patrón $[30, 25:40]$ y realizando la DST-II solamente por filas 
-se obtiene el punto en la posición $(30, 16)$ con valor de $S=0.9830214409852203$. Esta posición corresponde 
-a la fila $30$ y a aproximadamente a la columna $32$ de la imagen original. La figura
-\ref{fig:gaussian-example-dst-rows} muestra el resultado.
-
-\begin{figure}\label{fig:gaussian-example-dst-rows}
-	\centering
-	\includegraphics{Graphics/gaussian-example-dst-rows.png}
-	\caption{Imagen de una gaussiana  }
-\end{figure}
-
-Como se puede apreciar, en las filas el resultado es exacto, pero en las columnas existe un pequeño error con respecto
-a la posición donde empieza el patrón. Para poder contrarrestar esto se puede tomar una sección vertical del patrón
-y proceder de forma análoga a como se hizo con las filas. En este caso se toma la sección vertical del patrón
-correspondiente a las posiciones $[24:37, 30]$. La figura \ref{fig:gaussian-example-dst-cols} muesta el resultado
-
-\begin{figure}\label{fig:gaussian-example-dst-cols}
-	\centering
-	\includegraphics{Graphics/gaussian-example-dst-cols.png}
-	\caption{Imagen de una gaussiana  }
-\end{figure}
-
-La detección se realizó en el punto $15, 30$ con un valor de $S=0.9763538820250564$, que corresponde a la fila 
-$30$ aproximadamente y a la columna $30$.
-
-Juntando la información de ambas transformadas es posible lograr una detección más exacta de donde empieza el patrón 
-que se quiere encontrar. Por este motivo, se recomienda entonces tomar un line profile vertical y otro horizontal
-para obtener más información durante el proceso de detección.
+Sea $X$ la imagen de entrada de dimensiones $n\times m$, entonces si la DST-II se hace por filas se obtiene
+como resultado otra imagen de dimensiones $n \times m/2$. De forma análoga si se hace por columnas, se obtiene
+una imagen con dimensiones $n/2 \times m$. Nótese que se está asumiendo que se toma solamente la 
+\textit{second-rated} de la DST-II. Luego, sea $c_{i,j}$ el coeficiente $i$ de la \textit{second-rated} 
+de la DST-II sobre la fila $i$ , si esta última se hace por filas
+entonces el coeficiente corresponde a la fila $j$ y la columna $2j$ en $X$. De forma análoga si se hace
+la DST-II por columnas, el coeficiente $c_{i,j}$ corresponde a la fila $2i$ y a la columna $j$.
 
 \subsection{Tercer enfoque: DST-II usando varias shapelets}
 
-Como se muestra en la sección anterior, mientras más secciones del patrón se tomen, más información sobre la detección se puede
-obtener. Dado que en muchas apliaciones los patrones que se quieren encontrar pueden estar contenidos en imágenes
-con mayores dimensiones, obtener la posición a nivel de un solo par de píxeles no es cómodo. De hecho, lo que se buscaba en
-principio con esta investigación era ver si podía lograr un mejoramiento del constraste en la región donde se detecta el
-patrón. Por este motivo, se propone otra alternativa al enfoque anterior que consisite en usar varias shapelets 
-para la detección y promediar los resultados de todas. Con esta técnica lo que se buscar es lograr detectar
+Dado que mientras más \textit{shapelet} construidas a partir de distintas secciones del patrón pueden brindar más información
+sobre su localización, entonces se propone como otra alternativa el mismo enfoque anterior, pero construyendo
+varias \textit{shapelets} a partir de distintas secciones del patrón que se quiere detectar. Luego, los resultados
+de cada una de las transformadas sobre la señal $X$ se promedian. Con esta técnica lo que se buscar es lograr definir
 el contorno donde se detectan las distintas partes del patrón.

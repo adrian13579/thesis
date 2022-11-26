@@ -69,15 +69,32 @@ objetivo general explorar el uso de la DST-II para detectar masas en mamografía
 siguientes objetivos específicos:
 
 \begin{itemize}
-	\item Revisión del estado del arte sobre la construcción de wavelets adaptadas 
-	\item Evaluación numérica de algoritmos de optimización para estimar la \textit{wavelet}(\textit{shapelet})
+	\item Revisar el estado del arte sobre la construcción de wavelets adaptadas 
+	\item Evaluar algoritmos de optimización para estimar la \textit{wavelet}(\textit{shapelet})
 		usando la metodología propuesta en la DST-II. En el artículo \cite{Guido2018} no se muestra
 		cuál algoritmo numérico es utilizado para resolver el sistema de ecuaciones no lineales, 
 		por lo cual este es un punto importante en la presente investigación.
-	\item Replicación de la DST-II en el caso de señales y patrones unidimensionales. 
+	\item Replicar la DST-II en el caso de señales y patrones unidimensionales. 
 	\item Explorar ideas para la extensión de la DST-II para el caso bidimensional. 
-	\item Aplicación del algoritmo en mamografías para la detección de masas y evaluación de los resultados.  
-	\item Implementación de un software (interfaz gráfica) para el uso del algoritmo propuesto.
+	\item Aplicar las ideas para la extensión de al DST-II en mamografías para la detección de masas de los resultados.  
+	\item Implementar un software (interfaz gráfica) para el uso del algoritmo y las propuestas para su extensión al caso de señales
+		bidimensionales.
 \end{itemize}
 
-\section{Estructura del documento}
+El presente documento está organizado en 3 capítulos.
+
+En el capítulo 1 se introducen los conceptos fundamentales realacionados con la transformada de wavelet. Se definen
+la transformada continua de wavelet, la transformada discreta de wavelet y los bancos de filtros.
+También se presenta el algoritmo de Mallat y se mencionan algunas de las familias de wavelets más conocidas.
+Por último, se mencionan algunas de las técnicas usadas en la construcción de wavelets adaptadas a los datos. 
+
+En el capítulo 2 se expone la propuesta de este trabajo para construcción de wavelet adaptadas a patrones: 
+la DST-II. Se hace una descripción detallada del algoritmo y se exponen algunas ideas para su extensión en el
+caso de señales bidimensionales.
+
+En el capítulo 3 se muestran los resultados de la replicación de este algoritmo a través de varios experimentos.
+Se hace una pequeña comparación entre distintos métodos numéricos y las soluciones de los mismos al sistema de ecuaciones
+no lineales. Se muestran también los resultados de los experimentos para verificar la eficacia del algoritmo implementado en  
+la detección de patrones en señales de una dimensión. Luego, se exponen  los resultados y el análisis de las propuestas
+para su extensión al caso de señales de dos dimensiones, y su aplicación en la detección de masas en mamografías.
+
