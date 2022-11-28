@@ -8,7 +8,7 @@ ser luego aplicada específicamente para la detección de masas en mamografías.
 \section{Aspectos generales de las DSTs}
 
 La DST-II es una modificación de la DST. Por este motivo ambas comparten muchos puntos y de forma similar 
-a la DWT poseen los siguientes componentes y características \cite{Guido2008}\cite{Guido2018}:
+a la TWD poseen los siguientes componentes y características \cite{Guido2008}\cite{Guido2018}:
 
 \begin{itemize}
 	\item El par de filtros $p[\cdot]$ y $q[\cdot]$ donde $q_k = (-1)^k p_{N-k-1}$. 
@@ -23,12 +23,12 @@ a la DWT poseen los siguientes componentes y características \cite{Guido2008}\c
 		funciones de escala $\phi(x)$ y wavelet $\psi(x)$ en la TWD.
 	\item Las condiciones $\bar P[z] = Q[-z]$, $\bar Q[z]=-P[-z]$ y $\bar P[z]P[z] + \bar Q[z]Q[z]=2z^{-N+1}$,
 		todas en el dominio de la transformada $Z$, implican que $p[\cdot]$, $q[\cdot]$, $\bar p[\cdot]$  y $\bar q[\cdot]$
-		forman un banco de filtro de construcción perfecta (PRFB, en inglés).
+		forman un banco de filtro de reconstrucción perfecta (PRFB, en inglés).
 \end{itemize}
 
-Otro aspecto importante de las DSTs es al procesar una señal $s[\cdot]$ produce dos 
+Otro aspecto importante de las DSTs es que al procesar una señal $s[\cdot]$ produce dos 
 señales de igual longitud, cada una con la mitad de muestras que la señal de entrada $s[\cdot]$. La primera 
-mitad corresponde a \textit{master} y la segunda a \textit{second-rated}. 
+corresponde a \textit{master} y la segunda a \textit{second-rated}. 
 La concatenación de las mismas caracteriza a las DSTs
 y corresponden a los coeficientes de aproximación y de detalle en la TWD, respectivamente.
 
@@ -44,8 +44,7 @@ es distinto. Para el cálculo del mismo se establecen las siguientes restriccion
 
 \begin{itemize}
 	\item El tamaño del filtro debe ser ser $N \geq 6$. Esta restricción es necesaria por el hecho de que la 
-		DST-II tiene $\frac{N}{2}-2$  momentos nulos su \textit{minor shapelet}, equivalente a función \textit{wavelet}
-		en la TWD. Por tanto, si $N<6$, no se tendrían momentos nulos en esa función, distorsionando la transformada.
+		DST-II tiene $\frac{N}{2}-2$ momentos nulos en su \textit{minor shapelet}. Por tanto, si $N<6$, no se tendrían momentos nulos en esa función, distorsionando la transformada.
 	\item El tamaño del filtro deber ser par, al igual que en la TWD. De lo contrario, no se puede obtener una 
 		reconstrucción perfecta.
 	\item El patrón que se quiere detectar $m[\cdot]$, debe tener tamaño impar igual a $N+1$.
@@ -77,9 +76,9 @@ es el siguiente:
 			\sum_{k=0}^{N-1} q_{k}m_{k+1} = 0.
 		\end{equation}
 	\item \textbf{Paso 5:} Agrupar todas las ecuaciones definidas anteriormente y resolver numéricamente
-		el sistema de ecuaciones no lineales $N$ ecuaciones y $N$ incógnitas para obtener el filtro $q[\cdot]$.
+		el sistema de ecuaciones no lineales con $N$ ecuaciones y $N$ incógnitas para obtener el filtro $q[\cdot]$.
 	\item \textbf{Paso 6:} Obtener $p[\cdot]$ como $p_k=(-1)^{k+1}q_{N-k-1}$ y 
-		después, a partir de $q[\cdot]$ y $p[\cdot]$, calcular los filtros $\bar q[\cdot]$ y $\bar p[\cdot]$.
+		después, a partir de $q[\cdot]$ y $p[\cdot]$, calcular los filtros $\bar q[\cdot]$ ($\bar q_k = (-1)^{k+1}q_k$) y $\bar p[\cdot]$ ($\bar p_k = p_{N-k-1}$).
 	\item \textbf{Paso 7:} Como paso opcional, si se desea conocer la forma de la \textit{major} y \textit{minor}
 		\textit{shapelet} se pueden calcular $\displaystyle \Gamma(x)=\sum_k p_k \Gamma(2N-k)$ y 
 		$\displaystyle \Theta(x)=\sum_k q_k \Theta(2N-k)$.
@@ -113,7 +112,7 @@ una matriz y resolver un sistema lineal de tamaño $n\times n$ \cite{Burden2016}
 Existe otra clase de algoritmos llamados métodos de Newton inexactos o cuasi-Newton. Estos métodos reemplazan la
 matriz jacobiana en el método de Newton con una matriz de aproximación que se actualiza en 
 cada iteración. La desventaja de estos métodos es que la convergencia cuadrática del método de Newton se pierde,
-al ser reemplazada, en general, mediante una convergencia superlineal. Otra desventaja es que a diferencia 
+al ser reemplazada, en general, por una convergencia superlineal. Otra desventaja es que a diferencia 
 del método de Newton, los métodos cuasi-Newton no se autocorrigen. En muchos casos, el método de Newton
 corrige el error de redondeo con iteraciones sucesivas. Sin embargo, en muchos escenarios, la reducción 
 de la convergencia es un precio aceptable a pagar para reducir la cantidad de cálculos \cite{Burden2016}. 
@@ -124,7 +123,7 @@ como el método malo de Broyden, en vez del primer jacobiano, usa el segundo \ci
 
 El método de Anderson también llamado Anderson \textit{mixing} \cite{Eyert1996} y el de Krylov también son métodos inexactos de Newton. 
 Este último usa la aproximación de Krylov para el inverso del jacobiano y suele ser una buena opción para problemas
-con de gran escala \cite{kelley1995iterative}.
+de gran escala \cite{kelley1995iterative}.
 
 Aunque el sistema planteado en la Sección \ref{algoritmo:dst-2} tiene exactamente la misma cantidad de ecuaciones que de 
 incógnitas, algoritmos como el método híbrido de Powell y el algoritmo de Levenberg-Marquardt pueden 
@@ -155,7 +154,7 @@ Mientras más cercano sea $\mathbb{S}$ a 0 o 1, respectivamente, menos o más se
 la señal analizada $s[\cdot]$ a $m[\cdot]$.
 
 Según \cite{Guido2018}, para el primer nivel de la DST-II, si $\mathbb{S}_{_k}=1$ para algún $k=0,1,2,\ldots$
-con $k$ que pertenece a la segunda parte de la transformada (\textit{second-rated}), esto implica que 
+con $k$ que pertenece a la segunda parte de la transformada (\textit{second-rated}), esto implica
 que el patrón empieza en la posición $s_{2k-1}$ o $s_{2k}$. Un aspecto importante es que la búsqueda de 
 ceros en la DST-II, o unos en $\mathbb{S}$, solo se lleva a cabo en la segunda subbanda de la transformada,
 es decir, en el segmento perteneciente a la \textit{second-rated}.
@@ -170,7 +169,7 @@ es decir, en el segmento perteneciente a la \textit{second-rated}.
 
 En esta sección se describe paso a paso la construcción del filtro $q[\cdot]$ para la detección del
 patrón $m[\cdot]$ que se muestra en la Figura \ref{fig:Guido2018-pattern}. El método numérico usado para hallar
-la solución al sistema de eucaciones no lineales fue el método de Levenberg-Marquardt.
+la solución del sistema de ecuaciones no lineales fue el método de Levenberg-Marquardt.
 
 Según los pasos descritos en la Sección \ref{algoritmo:dst-2}, las ecuaciones del sistema son las siguientes:
 
@@ -257,7 +256,7 @@ $$
 
 Así es posible realizar la DST-II sobre cualquier señal para detectar la presencia
 del patrón $m[\cdot]$. Como paso opcional si se quiere obtener las funciones \textit{major} y \textit{minor}
-\textit{shapelets} se procedería a resolver los sistemas formados por las eucaciones  $\Gamma(x)=\sum_k p_k \Gamma(2N-k)$ y 
+\textit{shapelets} se procedería a resolver los sistemas formados por las ecuaciones  $\Gamma(x)=\sum_k p_k \Gamma(2N-k)$ y 
 $\Theta(x)=\sum_k q_k \Theta(2N-k)$.
 
 Para demostrar el uso de las DST-II en la detección de patrones y formas, el patrón $m[\cdot]$ (Figura \ref{fig:Guido2018-pattern}) 
@@ -377,7 +376,7 @@ este algoritmo se puede extender al caso de señales de bidimensionales.
 En el caso 2D, el patrón $m[\cdot]$ sería en realidad
 una matriz $M$ y, por tanto, se tomarían filas o columnas del mismo para construir la shapelet.
 La señal $s[\cdot]$ también pasa a ser una matriz, denotada por $X$.
-Dado que se está trabajando con imágenes y secciones de las mismas se va a usar de ahora en adelante la notación
+Dado que se está trabajando con imágenes y secciones de las mismas, se va a usar de ahora en adelante la notación
 $[A:B,C:D]$ para describir una región o porción de la imagen. $A$ y $B$ representan el intervalo en las filas
 comprendidos entre dichos valores. De forma similar, lo hacen $C$ y $D$, pero para las columnas.
 A continuación se exponen algunas ideas sobre la extensión de la DST-II para imágenes y la detección de patrones en este tipo de señales.
@@ -393,7 +392,7 @@ Los coeficientes de aproximación no son de interés para la detección. Nótese
 \textit{second-rated}, que corresponde a los coeficientes de detalles en la TWD. Por tanto, solo se analizará para
 la detección las componentes LH, HL y HH.
 En este enfoque, sea $X$ la señal de entrada (imagen) con dimensiones $n\times m$, entonces, al realizar el algoritmo de descomposición estándar,
-cada una de los componentes tiene dimensiones $n/2 \times m/2$. Luego, sea $c_{i,j}$ un coeficiente
+cada uno de los componentes tiene dimensiones $n/2 \times m/2$. Luego, sea $c_{i,j}$ un coeficiente
 ubicado en la fila $i$ y la columna de $j$ de cualquiera de las componentes, el mismo corresponde
 a la posición $(2i,2j)$ de $X$.
 
@@ -418,7 +417,7 @@ la DST-II por columnas, el coeficiente $c_{i,j}$ corresponde a la fila $2i$ y a 
 Dado que mientras más \textit{shapelet} construidas a partir de distintas secciones del patrón pueden brindar más información
 sobre su localización, entonces se propone como otra alternativa el mismo enfoque anterior, pero construyendo
 varias \textit{shapelets} a partir de distintas secciones del patrón que se quiere detectar. Luego, los resultados
-de cada una de las transformadas sobre la señal $X$ se promedian. Con esta técnica lo que se buscar es lograr definir
+de cada una de las transformadas sobre la señal $X$ se promedian. Con esta técnica lo que se busca es lograr definir
 el contorno donde se detectan las distintas partes del patrón.
 
 

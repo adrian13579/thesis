@@ -43,20 +43,20 @@ normalizadas. Luego, la transformada wavelet continua (TWC) de una función $f$ 
 	Wf(u,s) = \langle f,\psi_{u,s} \rangle = \int_{-\infty}^{+\infty}  f(t)\frac{1}{\sqrt{s}}\psi^*\left(\frac{t-u}{s}\right) dt.
 \end{equation}
 
-Si se define la operación de convolución como :
+Si se define la operación de convolución como:
 \begin{equation}
-	f*g(x) = \int_{\mathbb{R}} f(x-y)g(x)dy.
+	f*g(x) = \int_{\mathbb{R}} f(x-y)g(x)dy,
 \end{equation}
 \noindent la TWC también se puede definir de esta forma:
 
 \begin{equation}
 	Wf(u,s) = \int_{-\infty}^{+\infty}  f(t)\frac{1}{\sqrt{s}}\psi^*\left(\frac{t-u}{s}\right) dt = f*\bar \psi_s(u),
 \end{equation}
-\noindent donde $$\bar \psi_s(t)=\frac{1}{\sqrt{s}}\psi^*\left(\frac{-t}{s}\right)$$.
+\noindent donde $$\bar \psi_s(t)=\frac{1}{\sqrt{s}}\psi^*\left(\frac{-t}{s}\right).$$
 
 El concepto de función de escala también es importante cuando se trata de la transformada wavelet. 
 Cuando $Wf(u,s)$ es conocido solamente para valores de $s<s_0$, para recuperar $f$ se necesita información
-complementaria correspondiente a $Wf(u,s)$ para $s>s_0$. Por este motivo, se introduce la 
+complementaria correspondiente a $Wf(u,s)$ para $s>s_0$. Por este motivo, se introduce
 la función $\phi$, la cual se conoce como la función de escala, porque es la suma de todas las wavelets con
 escalas mayores que uno. La función $\phi$ también está normalizada ($||\phi||=1$).
 
@@ -139,7 +139,7 @@ de entrada en bandas de frecuencias. Normalmente, no es necesario
 conservar la salida entera de los filtros de análisis y solamente se mantienen los componentes pares de la salida
 de los filtros. Este proceso se llama submuestreo o decimación (\textit{downsampling}). 
 
-En el marco de las wavelets ortogonales el algoritmo de descomposición y reconstrucción se puede definir
+En el marco de las wavelets ortogonales, el algoritmo de descomposición y reconstrucción se puede definir
 en términos de operaciones con filtros. Las siguientes ecuaciones \cite{Mallat2008}:
 
 \begin{equation}
@@ -175,7 +175,7 @@ Sean los filtros
 	\psi(t) = \sum_n \sqrt{2}g[n]\phi(2t-n).
 \end{equation}
 
-Las siguientes fórmulas muestran como calcular los coeficientes de la TDW, partiendo de los filtros 
+Las siguientes fórmulas muestran como calcular los coeficientes de la TWD, partiendo de los filtros 
 $h$ y $g$, y es conocido como algoritmo de Mallat:
 
 \begin{equation}\label{eq:mallat-aprox}
@@ -209,7 +209,7 @@ partir de los coeficientes, se tiene la siguiente fórmula:
 
 \begin{figure}\label{fig:dwt-filterbanks-1D}
 	\includegraphics[scale=0.5]{Graphics/dwt-filterbanks-1D.png}
-	\caption{Representación gráfica del proceso de descomposición (análisis) y reconstrucción (síntesis) de la señal $f$. La $\uparrow$ corresponde la operación de \textit{upsampling} y la $\downarrow$ a la de \textit{downsampling} (Tomado de \cite{Recoskie2018} pág. 25).}\label{fig:dwt-filterbanks-1D}
+	\caption{Representación gráfica del proceso de descomposición (análisis) y reconstrucción (síntesis) de la señal $f$. La $\uparrow$ corresponde a la operación de \textit{upsampling} y la $\downarrow$ a la de \textit{downsampling} (Tomado de \cite{Recoskie2018} pág. 25).}\label{fig:dwt-filterbanks-1D}
 \end{figure}
 
 La Figura \ref{fig:dwt-filterbanks-1D} muestra una representación gráfica de ambos bancos de filtros, es decir, 
@@ -233,7 +233,7 @@ Esta forma de descomposición es la más usada y se denomina producto tensorial 
 En el caso 1D, se calculan dos compenentes de la señal en cada iteración del algoritmo (paso alto y
 paso bajo). En el caso 2D, para la descomposición no estándar, se calculan cuatro componentes. $LR$ y $LC$ son 
 el resultado del filtro de paso bajo
-sobre las filas y las columnas, respectivamente. De forma similar, se definen $HR$ y $HC$, pero para el caso de
+sobre las filas y las columnas, respectivamente. De forma similar, se definen $HR$ y $HC$, pero para el caso
 del filtro de paso alto. En cada iteración del algoritmo de la TWD, se obtienen las siguientes componentes:
 
 \begin{itemize}
@@ -246,16 +246,16 @@ del filtro de paso alto. En cada iteración del algoritmo de la TWD, se obtienen
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=2]{Graphics/dwt-2D.png}
-		\caption{Representación gráfica del proceso de descomposición (análisis) y reconstrucción (síntesis) de la señal bidimensional $X$. La $\uparrow$ corresponde la operación de \textit{upsampling} y la $\downarrow$ a la de \textit{downsampling}. }\label{fig:dwt-2D}
+		\caption{Representación gráfica del proceso de descomposición (análisis) de la señal bidimensional $X$. La $\downarrow$ corresponde a la operación de \textit{downsampling}.}\label{fig:dwt-2D}
 	\end{center}
 \end{figure}
 
 \noindent donde $X$ es una señal discreta de dos dimensiones. Los tres componentes calculados haciendo uso del 
-filtro de paso alto son considerados coeficientes de detalle, y el otro restante coeficientes de aproximación. 
+filtro de paso alto son considerados coeficientes de detalle, y el otro restante, corresponde a los coeficientes de aproximación. 
 Los grupos de coeficientes de
 detalles, corresponden cada uno a una orientación: horizontal, vertical y diagonal. Cada uno responde a cambios en su
 respectiva dirección. Al igual que en el caso unidimensional, se hace un submuestreo sobre la señal original
-en cada covolución con los filtros. La Figura \ref{fig:dwt-2D} representa gráficamente
+en cada convolución con los filtros. La Figura \ref{fig:dwt-2D} representa gráficamente
 el proceso de obtención de la TWD para el caso de una señal bidimensional.
 
 En el aspecto de la complejidad computacional, el algoritmo es $O(n^2)$, teniendo como entrada
@@ -296,7 +296,7 @@ funciones. Tal es el caso de la compresión de datos y la reducción y/o elimina
 Los momentos nulos o \textit{vanishing moments} son las propiedades de las wavelets que 
 hacen posible la representación de funciones suaves con un pequeño número de coeficientes.
 
-Se dice que una wavelet $\psi$ tiene $p$ momentos nulos si
+Se dice que una wavelet $\psi$ tiene $p$ momentos nulos si:
 \begin{equation}
 	\int_{-\infty}^{\infty} t^k\psi(t)dt= 0 , \forall 0 \leq k < p.
 \end{equation}
@@ -337,8 +337,8 @@ o dilataciones, pero que siguen gozando de todas las beneficiosas propiedades de
 de primera generación.
 A estas nuevas wavelets se les llama de segunda generación. 
 
-El esquema \textit{lifting} es una herramienta usada para la construcción de bases wavelets. 
-Un filtro finito, llamado \textit{lifting step}, es usado para 
+En el esquema \textit{lifting},
+un filtro finito, llamado \textit{lifting step}, es usado para 
 generar un nuevo par de filtros a partir de otro par existente. Múltiples \textit{lifting steps} pueden ser aplicados
 consecutivamente. Dos propiedades interesantes de este esquema son la preservación de la biortogonalidad
 y que cualquier wavelet con filtros finitos puede se expresada como una secuencia de \textit{lifting steps}.
@@ -349,7 +349,7 @@ En la gran mayoría de las aplicaciones, la selección de las wavelets es fundam
 para encontrar metodologías y criterios para seleccionar las mejores wavelets en ciertas aplicaciones \cite{ngui2013} \cite{doi:10.1177/14759217211010261}.
 Sin embargo, en ocasiones, las wavelets predefinidas que se tienen a mano, no son la mejor opción.
 La construcción de una wavelet que posea las propiedades que serían idóneas para un problema puede ser una
-vía de solución. Este es una línea que se ha trabajado en el área de las wavelets, proponiéndose varias
+vía de solución. Esta es una línea que se ha trabajado en el área de las wavelets, proponiéndose varias
 técnicas para la obtención de nuevas funciones basadas en los datos.
 
 El esquema \textit{lifting} ha sido usado en conjunción con otros algoritmos para obtener wavelets 
@@ -373,27 +373,27 @@ es proveniente del conjunto de datos.
 
 La detección de patrones usando wavelets construidas a partir de un patrón es otro de los enfoques trabajados en las wavelets adaptadas a datos.  
 En \cite{Mesa2005AdaptedWF} se propone una variante del método de \textit{lifting} para la detección de patrones en señales unidimensionales.
-Partiendo de un patrón, se diseñan a través del esquema de \textit{ lifting } unas wavelets, y proponen un procedimiento
+Partiendo de un patrón, se diseñan a través del esquema de \textit{lifting} unas wavelets, y proponen un procedimiento
 de detección dividido en tres etapas. Un algoritmo de optimización basado en mínimos cuadrados es usado en \cite{rpeak}
-para diseñar una wavelet, que es luego usada en la CWT para detectar un patrón específico. 
+para diseñar una wavelet, que es luego usada en la TWC para detectar un patrón específico. 
 Técnicas como las  anteriores pueden ser aplicadas en diversos campos. Por ejemplo, en \cite{Layouni2017} 
 se usan wavelets adaptadas a 
 patrones para la detección de defectos en tuberías de gas y petróleo.
 
-La DST \cite{Guido2008} es otra de las técnicas que se basa en la construcción de una wavelet ( en este caso se le llama \textit{shapelet})
+La DST \cite{Guido2008} es otra de las técnicas que se basa en la construcción de una wavelet (en este caso se le llama \textit{shapelet})
 a partir de un patrón. La DST añade al análisis temporal y de frecuencias, el de forma. El concepto de \textit{shapelet}
 está inspirado en el de \textit{Spikelet} y \textit{Speechlet}, pero a diferencia de estos si se logra  la condición
 de reconstrucción perfecta. Basado en el concepto de \textit{shapelet} el trabajo \cite{lifting-shapelet}, pero usando
-el esquema de \textit{lifting} para la construcción de los filtros. 
+el esquema \textit{lifting} para la construcción de los filtros. 
 
 En \cite{Guido2018} se hacen modificaciones a la DST para crear una segunda versión: DST-II. Esta última
-comparte muchas de las características la primera versión, excepto por las condiciones 
+comparte muchas de las características de la primera versión, excepto por las condiciones 
 de detección (\textit{matching}).
 Esta nueva variante añade las condiciones antes mencionadas de forma tal que el producto escalar inherente al algoritmo
 de Mallat durante el cálculo de la transformada sea $0$.
 
 Recientemente, en \cite{Guido2021}, el mismo autor propone una mejora a las dos versiones anteriores de la 
 DST e introduce la tercera generación: DST-III. Esta variante, a diferencia de las dos anteriores, permite 
-la creación de \textit{ shapelets} casi simétricas. 
+la creación de \textit{shapelets} casi simétricas. 
 
 

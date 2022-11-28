@@ -6,7 +6,7 @@ cerebral de una persona son todos fenómenos que se representan a través de se�
 sus características únicas. Esto ha motivado el estudio y la creación de herramientas capaces
 de analizar dichas señales. 
 
-En 1822, Joseph Fourier publica su \textit{ Théorie analytique de la chaleur } \cite{Fourier2009} donde introduce la idea de usar
+En 1822, Joseph Fourier publica su \textit{Théorie analytique de la chaleur} \cite{Fourier2009} donde introduce la idea de usar
 series trigonométricas para analizar la conducción del calor en cuerpos sólidos. Esta teoría se conoce en
 la actualidad como Teoría de Fourier. En la misma, se plantea que una señal se puede representar como
 una serie, posiblemente infinita, de senos y cosenos. Este enfoque permite estudiar las diferentes 
@@ -20,9 +20,9 @@ temporal se pierde. La información de la frecuencia es fija en relación con el
 trigonométrica. Esto es el caso contrario al de muchas señales, como el sonido, donde las características
 cambian a lo largo del tiempo. 
 
-En 1910 , Alfréd Haar introduce en su trabajo \textit{Zur Theorie der orthogonalen Funktionensysteme} \cite{Haar1910} un tipo 
+En 1910, Alfréd Haar introduce en su trabajo \textit{Zur Theorie der orthogonalen Funktionensysteme} \cite{Haar1910} un tipo de
 funciones que en la actualidad se conocen como wavelets, pero no es
-hasta varias décadas que se les acuña este nombre. Estas funciones son como pequeñas ondas y, a diferencia
+hasta varias décadas después que se les acuña este nombre. Estas funciones son como pequeñas ondas y, a diferencia
 de las funciones trigonométricas, son de pequeña duración y localizadas en tiempo, permitiendo obtener información tanto temporal como
 de frecuencia. Otra ventaja con respecto a la bases de Fourier, es que las bases wavelets no son únicas: 
 existen una amplia variedad, para todo tipo de aplicaciones, incluso es posible diseñar wavelets para problemas
@@ -40,7 +40,7 @@ bases wavelets \cite{Taubman2002}.
 
 En el campo de la medicina, las wavelets también han hecho una incursión bastante importante. Trabajos como
 \cite{Bhattacharyya2018} y \cite{Sharma2020} muestran su aplicación en la detección de patrones y áreas de interés
-en electroencefalogramas (EEG) respectivamente. Estudios como \cite{Too2018} han hecho una comparación de las distintos
+en electroencefalogramas (EEG) respectivamente. Estudios como \cite{Too2018} han hecho una comparación de los distintos
 tipos de wavelets en los EEG. 
 
 En el procesamiento de imágenes médicas también han sido 
@@ -49,13 +49,13 @@ usadas en los útimos años, por ejemplo, en la compresión \cite{Bruylants2015}
 mejorar el contraste \cite{Dikshit2022}.
 
 Las wavelets también han evolucionado y han sido la base para nuevos algoritmos que añaden nuevas capacidades.
-Tal es el caso de Transformada Shapelet Discreta (DST, en inglés) \cite{Guido2008} que está basada en la Transformada 
+Tal es el caso de la Transformada Shapelet Discreta (DST, en inglés) \cite{Guido2008} que está basada en la Transformada 
 Wavelet Discreta (TWD), pero que añade información de forma en conjunto con el clásico análisis temporal y de frecuencia de la
 TWD. En un segundo trabajo, se crea una segunda versión de este algoritmo, DST-II \cite{Guido2018}, y en \cite{Guido2021} se hacen 
 algunas modificacones para obtener simetría, creando una tercera versión conocida como DST-III.
 La DST, aunque poco estudiada, por sus propiedades de detección puede se una alternativa a otros algoritmos de
 detección de patrones usados en el estado del arte que están basados en aprendizaje automático y que requieren
-de muchos datos para us correcto funcionamiento.
+de muchos datos para su correcto funcionamiento.
 
 En la Facultad de Matemática y Computación, también se trabaja con las wavelets y su transformada, sobretodo en
 investigaciones sobre el procesamiento de imágenes biomédicas. Las mamografías son uno de los tipos de imágenes
@@ -83,7 +83,7 @@ siguientes tareas:
 
 El presente documento está organizado en 3 capítulos.
 En el capítulo 1 se introducen los conceptos fundamentales relacionados con la transformada de wavelet. Se definen
-la Transformada Wavelet Continua , la Transformada Wavelet Discreta y los bancos de filtros.
+la Transformada Wavelet Continua, la Transformada Wavelet Discreta y los bancos de filtros.
 También se presenta el algoritmo de Mallat y se mencionan algunas de las familias de wavelets más conocidas.
 Por último, se mencionan algunas de las técnicas usadas en la construcción de wavelets adaptadas a los datos. 
 En el capítulo 2 se expone la propuesta de este trabajo para construcción de wavelet adaptadas a patrones: 
@@ -93,6 +93,6 @@ En el capítulo 3 se muestran los resultados de la replicación de este algoritm
 Se hace una comparación entre distintos métodos numéricos para solucionar el sistema de ecuaciones
 no lineales. Se muestran también los resultados de los experimentos para verificar la eficacia del algoritmo implementado en  
 la detección de patrones en señales de una dimensión. Luego, se exponen  los resultados y el análisis de las propuestas
-para su extensión al caso de señales de dos dimensiones, y su aplicación en la detección de anomalías tipo masa en mamografía.
+para su extensión al caso de señales de dos dimensiones, y su aplicación en la detección de anomalías tipo masa en mamografías.
 
 Este trabajo pertenece a acciones del proyecto "Métodos numéricos para problemas en múltiples escalas", asociado al Programa Nacional de Ciencias Básicas, Código PN223LH010-003, Ministerio de Ciencia, Tecnología y Medio Ambiente (CITMA), Cuba, 2021-2023.

@@ -33,7 +33,7 @@ del sistema de ecuaciones para obtener el filtro $q[\cdot]$ de la DST-II.
 
 \subsection{Ejemplos de los experimentos y análisis de los resultados}
 
-Para comprobar la eficiencia de los métodos numéricos seleccionados se generó un dataset formado por 85 patrones, con longitudes de entre $9$ y 
+Para comprobar la eficiencia de los métodos numéricos seleccionados se utilizó un dataset formado por 85 patrones, con longitudes de entre $9$ y 
 $29$ muestras, con amplitudes desde $-10$ hasta $10$.
 
 Para calcular el error de las soluciones se evaluaron en cada una de las ecuaciones del sistema. Como resultado
@@ -74,12 +74,9 @@ diferencia entre este último y Levenberg-Marquardt es poca en comparación con 
 	\end{tabular}
 \end{table}
 
-Los resultados sobre la convergencia se muestran en la tabla \ref{table:numerical-convergence}. Se puede
+Los resultados sobre la convergencia se muestran en la Tabla \ref{table:numerical-convergence}. Se puede
 observar que Levenberg-Marquardt fue el que alcanzó la convergencia en la mayoría de los casos, seguido 
 por hybr. En el caso de Krylov, no logró la convergencia en ninguno de los casos.
-
-En el caso de patrones con longitudes mayores de 30 no se logró realizar los experimentos, pues demoraban demasiado
-en el equipo de cómputo donde se realizaron.
 
 \section{Detección de patrones en señales 1D}
 
@@ -94,7 +91,7 @@ y son las siguientes:
 Blocks, Bumps, HeaviSine, Doppler, Ramp, TwoChirp, QuadChirp, MishMash, WernerSorrows, HypChirps, LinChirps, Chirps y sineoneoverx.
 
 Los patrones usados se encuentran en el repositorio y fueron generados a mano tratando de imitar señales biomédicas que
-aparecen en \cite{Guido2018}. El tamaño de los patrones es entre 14 y 26 muestras.
+aparecen en \cite{Guido2018}. El tamaño de los patrones es entre 14 y 27 muestras.
 
 Las métricas usadas para analizar los resultados de los experimentos fueron:
 
@@ -124,13 +121,13 @@ Valores negativos indican que se detectó antes, y valores positivos que se dete
 
 Las figuras \ref{fig:cm-comparison}, \ref{fig:roc-comparison} y \ref{fig:hist-comparison} 
 muestran los resultados de la DST-II en la detección en tres escenarios distintos.
-Primero, con un grupo de patrones de entre 15 y 29 muestras, y luego con patrones de 19 y 27 
+Primero, con un grupo de patrones de entre 15 y 27 muestras, y luego con patrones de 19 y 27 
 muestras, respectivamente. En el caso del experimento con varios patrones se observa que 
 la \textit{shapelet} es capaz de reaccionar ante la presencia de los patrones insertados en las señales en 
 la mayoría de los casos. En la Figura \ref{fig:roc-comparison} se observa que la \textit{shapelet}
 es superior a las demás wavelets en la detección. Sin embargo, el tamaño del patrón es un factor
 importante. Nótese que en las figuras \ref{fig:roc-comparison} b) y c) existe una gran diferencia
-en los resultados. Esto también se puede observar en la la Figura \ref{fig:hist-comparison}, donde 
+en los resultados. Esto también se puede observar en la Figura \ref{fig:hist-comparison}, donde 
 en el caso del patrón con 27 muestras
 la diferencia entre la posición real y la que predice el algoritmo es mayor que en el caso del patrón 
 de 19 muestras. Esto se debe a que mientras mayor sea el tamaño del patrón más díficil es resolver
@@ -138,12 +135,12 @@ el sistema de ecuaciones no lineales para la construcción del filtro $q[\cdot]$
 de la solución en las condiciones de detección es mayor. Como consecuencia de lo anterior,
 la precisión de la DST-II para predecir la posición donde se encuentra el patrón dentro de la señal también
 se ve afectada. Las Figura \ref{fig:success-example-experiment} muestra un ejemplo donde la detección
-funciona adecuadamente, a firencia del ejemplo mostrado en la Figura \ref{fig:failed-example-experiment}, donde
+funciona adecuadamente, a difirencia del ejemplo mostrado en la Figura \ref{fig:failed-example-experiment}, donde
 el método numérico no logra la convergencia, y como consecuencia, la detección no funciona adecuadamente.
 
 \begin{figure}
 	\centering
-	\subfigure[Varios patrones de entre 15 y 25 muestras]{\includegraphics[scale=0.5]{Graphics/cm-th-08-all-patterns.png}}
+	\subfigure[Varios patrones de entre 15 y 27 muestras]{\includegraphics[scale=0.5]{Graphics/cm-th-08-all-patterns.png}}
 	\subfigure[Patrón con 27 muestras]{\includegraphics[scale=0.5]{Graphics/cm-th-08-long-pattern.png}}
 	\subfigure[Patrón con 19 muestras]{\includegraphics[scale=0.5]{Graphics/cm-th-08-medium-pattern.png}}
 	\caption{ Matrices de confusión de cada uno de los experimentos. En todos los casos se usó $th=0.8$.} \label{fig:cm-comparison}
@@ -188,7 +185,7 @@ el método numérico no logra la convergencia, y como consecuencia, la detecció
 
 La selección del umbral $th$ para la medida $\mathbb{S}$ también es importante.
 Las figuras \ref{fig:1d-experiment-060}, \ref{fig:1d-experiment-060} y \ref{fig:1d-experiment-098} muestran los resultados 
-sobre un mismo patron constituido por 17 muestras, pero variando el umbral $th$. El método numérico para la solución es el
+sobre un mismo patrón constituido por 17 muestras, pero variando el umbral $th$. El método numérico para la solución es el
 mismo: Levenberg-Marquardt.
 
 Seleccionando un umbral $th=0.6$, permite al algoritmo sacarle provecho a su capacidad de detectar el patrón. Sin embargo,
@@ -198,7 +195,7 @@ disminuye considerablemente, pues de 216 pasa a ser tan solo 53. Como consecuenc
 
 Si se sigue aumentando el umbral, esta vez a $0.98$, los resultados cambian drásticamente. La \textit{shapelet} no
 se comporta para nada distinto al resto de las wavelets. Aunque teóricamente un valor igual a cero en $\mathbb{S}$ indica
-la detección exacta del patrón, siempre existe un error durante el cálculo del filtro $q$ que impide que esto sea
+la detección exacta del patrón, siempre existe un error durante el cálculo del filtro $q[\cdot]$ que impide que esto sea
 cierto en la práctica. Por este motivo, poner el umbral de detección demasiado alto empeora los resultados.
 Por lo tanto, un valor entre $0.6$ (valor que recomiendan en \cite{Guido2018}) y $0.90$ se considera idóneo.
 
@@ -226,13 +223,13 @@ Por lo tanto, un valor entre $0.6$ (valor que recomiendan en \cite{Guido2018}) y
 \section{Detección de patrones en señales 2D}
 
 Una vez evaluada la capacidad de detección de la DST-II, se procede a la exploración de sus capacidades 
-para el caso de señales 2D. A continuación se describen en detalles de los experimentos y resultados.
+para el caso de señales 2D. A continuación se describen los experimentos y resultados.
 
 Para llevar a cabo la experimentación se crearon imágenes artificiales con figuras simples. Entre ellas se incluyen gaussianas,
 círculos y zonas rectangulares. El objetivo es evaluar la capacidad del algoritmo para detectar en el caso de 2D
 y su sensibilidad ante el ruido. Sobre cada una de estas figuras se utilizó cada una de las propuestas realizadas 
 en la Sección \ref{section:2d}.
-El resultado se evaluaba visualmente, sobre el  mapa de colores (Figura \ref{fig:colormap}) donde las tonalidades azules representas
+El resultado se evaluaba visualmente, sobre el  mapa de colores (Figura \ref{fig:colormap}) donde las tonalidades azules representan
 valores cercanos a 0 y las amarillas cercanas a 1.
 
 \begin{figure}
@@ -258,7 +255,7 @@ valores cercanos a 0 y las amarillas cercanas a 1.
 
 Como ejemplo se toma la imagen de la Figura \ref{fig:gaussian-example-experiment}. Siguiendo el primer enfoque,
 se toman las secciones mostradas en la Figura
-\ref{fig:lines-experiment} y se construyen dos \textit{shapelets} (una para las columnas y otra para las filas), obteniendose cuatro componentes
+\ref{fig:lines-experiment} y se construyen dos \textit{shapelets} (una para las columnas y otra para las filas), obteniéndose cuatro componentes
 al realizar la transformada. La Figura \ref{fig:gaussian-example-approach1} muestra el resultado. Como se puede apreciar, en ninguno de 
 los coeficientes se obtiene un contraste alto con el resto, y de hecho ninguno supera el valor de $\mathbb{S}(c)=0.8$.
 
@@ -275,7 +272,7 @@ Pero, una vez que se pasa a la segunda transformada sobre las columnas, las cond
 Las ecuaciones (\ref{eq:matching-1}) (\ref{eq:matching-2}) están diseñadas para que la convolución sea lo más cercana 
 a cero solamente si se está pasando el filtro sobre los valores del patrón, no sobre su transformada.
 
-Esto limita la extensión de las capacidades de detección de la DST-II para señales de más de una dimension, 
+Esto limita la extensión de las capacidades de detección de la DST-II para señales de más de una dimensión, 
 tal y como se puede
 apreciar en el ejemplo anterior. Resultados similares se obtuvieron en otros ejemplos. Por lo tanto, esta no es una 
 vía factible para extender la DST-II para señales bidimensionales.
@@ -290,14 +287,14 @@ vía factible para extender la DST-II para señales bidimensionales.
 	\subfigure[Coeficientes de detalle vertical]{\includegraphics[width=\linewidth]{Graphics/gaussian-2d-experiment-vertical.png}}\par
 	\subfigure[Coeficientes de detalle diagonal]{\includegraphics[width=\linewidth]{Graphics/gaussian-2d-experiment-diagonal.png}}\par
 \end{multicols}
-\caption{Resultado de evaluar $\mathbb{S}$ sobre cada uno de las componentes de la DST-II usando el primer enfoque} \label{fig:gaussian-example-approach1}
+\caption{Resultado de evaluar $\mathbb{S}$ sobre cada uno de las componentes de la DST-II usando el primer enfoque.} \label{fig:gaussian-example-approach1}
 \end{figure*}
 
 
 El resultado del segundo enfoque se aprecia en la Figura \ref{fig:gaussian-example-approach2}.
 En este caso sí se puede apreciar claramente que existe un coeficiente que sobresale
-entre los demás al realizar la DST-II por filas. El mismo se encuentra en la posición $(30,16)$ con un valor de $S=0.98$.
-Esta posición corresponde aproximadamente al punto $(30,34)$ en la imagen original. Teniendo en cuenta que la
+entre los demás al realizar la DST-II por filas. El mismo se encuentra en la posición $(30,16)$ con un valor de $\mathbb{S}=0.98$.
+Esta posición corresponde aproximadamente al punto $(30,32)$ en la imagen original. Teniendo en cuenta que la
 sección horizontal del patrón tomado está comprendida en el intervalo $[30,25:40]$, el resultado es bastante certero.
 
 En el caso de la sección vertical, no se tuvo tanto éxito. No existe gran constraste entre ninguna posición con el resto. 
@@ -333,7 +330,7 @@ muestras son grandes.
 	\caption{Resultado de evaluar $\mathbb{S}$ sobre cada una de las \textit{second-rated} de la DST-II usando el tercer enfoque.} \label{fig:gaussian-example-approach3}
 \end{figure}
 
-\section{Applicación en la detección de masas en mamografías}
+\section{Aplicación en la detección de masas en mamografías}
 
 Para evaluar la capacidad del algoritmo de la DST-II y las propuestas de extensión al caso bidimensional en
 la detección de masas de mamografías se usó la base de datos INBreast \cite{Moreira2012}. La misma 
@@ -418,7 +415,7 @@ extender para el caso 2D con este enfoque.
 
 En el caso del segundo enfoque, los resultados son mejores. Si se observa la Figura \ref{fig:example-mm-approach2}, al menos hay signos de detección.
 Aunque bien difíciles de ver, existen un par de píxeles (de color amarillo), uno en cada imagen que constrastan con el resto.
-Estos están ubicados en las posiciones $(32,27)$ y $(14,59)$ con valores $0.9831863519468129$ y $0.983604207430764$,
+Estos están ubicados en las posiciones $(32,27)$ y $(14,59)$ con valores $\mathbb{S}=0.9831863519468129$ y $\mathbb{S}=0.983604207430764$,
 respectivamente. Ambos corresponden a las posiciones aproximadas $(32,54)$ y $(28,59)$, que es donde se encuentra el patrón extraído.
 La Figura \ref{fig:example-mm-approach3} muestra la mamografía con las posiciones 
 predichas por el algoritmo basado en $\mathbb{S}$. Los píxeles de color rojo indican estas posiciones.
@@ -440,7 +437,7 @@ las \textit{shapelets}, no detecta la segunda masa.
 \end{figure}
 
 El tercer enfoque no logra buenos resultados, tal y como se muestra en la Figura \ref{fig:example-mm-approach3}.
-No se logra ningún signo de detección y, de hecho, los valores no superan $0.8$. 
+No se logra ningún signo de detección y, de hecho, los valores no superan $\mathbb{S}=0.8$. 
 
 Como conclusión general de los experimentos, se puede decir que se logró una replicación exitosa de la DST-II,
 y que en el caso unidimensional funciona adecuadamente como clasificador para la presencia de un patrón 
