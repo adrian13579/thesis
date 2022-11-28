@@ -4,13 +4,13 @@
 Muchos procesos de la naturaleza se pueden modelar como señales. El sonido, la luz y la actividad
 cerebral de una persona son todos fenómenos que se representan a través de señales. Cada una con
 sus características únicas. Esto ha motivado el estudio y la creación de herramientas capaces
-de descubrir los secretos de las mismas. 
+de analizar dichas señales. 
 
 En 1822, Joseph Fourier publica su \textit{ Théorie analytique de la chaleur } \cite{Fourier2009} donde introduce la idea de usar
-series matemáticas para analizar la conducción del calor en cuerpos sólidos. Esta teoría se conoce en
+series trigonométricas para analizar la conducción del calor en cuerpos sólidos. Esta teoría se conoce en
 la actualidad como Teoría de Fourier. En la misma, se plantea que una señal se puede representar como
 una serie, posiblemente infinita, de senos y cosenos. Este enfoque permite estudiar las diferentes 
-frecuencias presentes en una señal y la amplitud de las ondas que la conforman. A la herramienta que permite
+frecuencias presentes en una señal y la amplitud de las ondas que la conforman. A esta herramienta que permite
 analizar el comportamiento de una función en el dominio de la frecuencia se le conoce en la actualidad como
 Transformada de Fourier.
 
@@ -22,22 +22,23 @@ cambian a lo largo del tiempo.
 
 En 1910 , Alfréd Haar introduce en su trabajo \textit{Zur Theorie der orthogonalen Funktionensysteme} \cite{Haar1910} un tipo 
 funciones que en la actualidad se conocen como wavelets, pero no es
-después de varias décadas que se les acuña este nombre. Estas funciones son como pequeñas ondas y a diferencia
-de las funciones trigonométricas, son de pequeña duración y localizadas en tiempo permitiendo obtener información tanto temporal como
+hasta varias décadas que se les acuña este nombre. Estas funciones son como pequeñas ondas y, a diferencia
+de las funciones trigonométricas, son de pequeña duración y localizadas en tiempo, permitiendo obtener información tanto temporal como
 de frecuencia. Otra ventaja con respecto a la bases de Fourier, es que las bases wavelets no son únicas: 
-existen una amplia variedad, para todo tipo de aplicaciones. 
+existen una amplia variedad, para todo tipo de aplicaciones, incluso es posible diseñar wavelets para problemas
+específicos.
 
-La propagación de las wavelets en la comunidad científica y académica es sorprendente.
+La expansión de las wavelets en la comunidad científica y académica es sorprendente.
 El surgimiento y consolidación de esta teoría a mediados de los 1980s, su conexión con el procesamiento
 de señales y bancos de filtros \cite{Mallat2008}, el diseño de una algoritmo eficiente para el cómputo de la transformada \cite{Mallat2008}
-y los aportes sobre el estudio de wavelet ortogonales \cite{daubechies1992} son algunos hechos que marcan su rápido desarrollo en
+y los aportes sobre el estudio de wavelets ortogonales \cite{daubechies1992} son algunos hechos que marcan su rápido desarrollo en
 pocos años.   
 
 Dejando un lado el aspecto puramente matemático, las wavelets también han tenido un gran impacto  
 en muchos campos y problemas. Por ejemplo, el algoritmo de compresión de imágenes JPEG 2000 está basado en
 bases wavelets \cite{Taubman2002}.
 
-En el campo de la medicina las wavelets también han hecho una incursión bastante importante. Trabajos como
+En el campo de la medicina, las wavelets también han hecho una incursión bastante importante. Trabajos como
 \cite{Bhattacharyya2018} y \cite{Sharma2020} muestran su aplicación en la detección de patrones y áreas de interés
 en electroencefalogramas (EEG) respectivamente. Estudios como \cite{Too2018} han hecho una comparación de las distintos
 tipos de wavelets en los EEG. 
@@ -48,12 +49,12 @@ usadas en los útimos años, por ejemplo, en la compresión \cite{Bruylants2015}
 mejorar el contraste \cite{Dikshit2022}.
 
 Las wavelets también han evolucionado y han sido la base para nuevos algoritmos que añaden nuevas capacidades.
-Tal es el caso de transformada discreta de \textit{shapelet} (DST) \cite{Guido2008} que está basada en la transformada discreta
-de wavelet (DWT), pero que añade información de forma en conjunto con el clásico análisis temporal y de frecuencia de la
-DWT. En un segundo trabajo se crea una segunda versión de este algoritmo, DST-II \cite{Guido2018}, y en \cite{Guido2021} se hacen 
+Tal es el caso de Transformada Shapelet Discreta (DST, en inglés) \cite{Guido2008} que está basada en la Transformada 
+Wavelet Discreta (TWD), pero que añade información de forma en conjunto con el clásico análisis temporal y de frecuencia de la
+TWD. En un segundo trabajo, se crea una segunda versión de este algoritmo, DST-II \cite{Guido2018}, y en \cite{Guido2021} se hacen 
 algunas modificacones para obtener simetría, creando una tercera versión conocida como DST-III.
 La DST, aunque poco estudiada, por sus propiedades de detección puede se una alternativa a otros algoritmos de
-detección de patrones usados en el estado del arte que están basados en \textit{machine learning} y que requieren
+detección de patrones usados en el estado del arte que están basados en aprendizaje automático y que requieren
 de muchos datos para us correcto funcionamiento.
 
 En la Facultad de Matemática y Computación, también se trabaja con las wavelets y su transformada, sobretodo en
@@ -62,39 +63,36 @@ con las que se trabaja en este centro.
 Con la aparición del algoritmo de la DST-II, surge  
 una alternativa que posee ciertas ventajas con otros enfoques  
 usados en los últimos años para problemas de detección. Sin embargo, su uso solo ha sido estudiado para el 
-caso de señales unidimensionales, por lo que es de interés para el centro experimentar y explorar su extensión
-para el caso de señales bidimensionales. Por este motivo y partiendo de la hipótesis de que la DST se 
+caso de señales unidimensionales, por lo que es de interés experimentar y explorar su extensión
+para el caso de señales bidimensionales. Por este motivo, y partiendo de la hipótesis de que la DST se 
 puede extender para el caso bidimensional y aplicar para la detección de patrones en mamografías, este trabajo tiene como 
-objetivo general explorar el uso de la DST-II para detectar masas en mamografías. Para ello, se deben cumplir los 
-siguientes objetivos específicos:
+objetivo general explorar alternativas de extensión bidimensional de la DST-II para detectar 
+anomalías tipo masa en imágenes de mamografías digital. Para ello, se deben cumplir las 
+siguientes tareas:
 
 \begin{itemize}
-	\item Revisar el estado del arte sobre la construcción de wavelets adaptadas 
-	\item Evaluar algoritmos de optimización para estimar la \textit{wavelet}(\textit{shapelet})
+	\item Revisar el estado del arte sobre la construcción de wavelets adaptadas.
+	\item Evaluar algoritmos de optimización para estimar la wavelet (\textit{shapelet})
 		usando la metodología propuesta en la DST-II. En el artículo \cite{Guido2018} no se muestra
 		cuál algoritmo numérico es utilizado para resolver el sistema de ecuaciones no lineales, 
 		por lo cual este es un punto importante en la presente investigación.
 	\item Replicar la DST-II en el caso de señales y patrones unidimensionales. 
 	\item Explorar ideas para la extensión de la DST-II para el caso bidimensional. 
-	\item Aplicar las ideas para la extensión de al DST-II en mamografías para la detección de masas de los resultados.  
-	\item Implementar un software (interfaz gráfica) para el uso del algoritmo y las propuestas para su extensión al caso de señales
-		bidimensionales.
+	\item Aplicar las ideas para la extensión de la DST-II en mamografías para la detección de masas.  
 \end{itemize}
 
 El presente documento está organizado en 3 capítulos.
-
-En el capítulo 1 se introducen los conceptos fundamentales realacionados con la transformada de wavelet. Se definen
-la transformada continua de wavelet, la transformada discreta de wavelet y los bancos de filtros.
+En el capítulo 1 se introducen los conceptos fundamentales relacionados con la transformada de wavelet. Se definen
+la Transformada Wavelet Continua , la Transformada Wavelet Discreta y los bancos de filtros.
 También se presenta el algoritmo de Mallat y se mencionan algunas de las familias de wavelets más conocidas.
 Por último, se mencionan algunas de las técnicas usadas en la construcción de wavelets adaptadas a los datos. 
-
 En el capítulo 2 se expone la propuesta de este trabajo para construcción de wavelet adaptadas a patrones: 
 la DST-II. Se hace una descripción detallada del algoritmo y se exponen algunas ideas para su extensión en el
 caso de señales bidimensionales.
-
 En el capítulo 3 se muestran los resultados de la replicación de este algoritmo a través de varios experimentos.
-Se hace una pequeña comparación entre distintos métodos numéricos y las soluciones de los mismos al sistema de ecuaciones
+Se hace una comparación entre distintos métodos numéricos para solucionar el sistema de ecuaciones
 no lineales. Se muestran también los resultados de los experimentos para verificar la eficacia del algoritmo implementado en  
 la detección de patrones en señales de una dimensión. Luego, se exponen  los resultados y el análisis de las propuestas
-para su extensión al caso de señales de dos dimensiones, y su aplicación en la detección de masas en mamografías.
+para su extensión al caso de señales de dos dimensiones, y su aplicación en la detección de anomalías tipo masa en mamografía.
 
+Este trabajo pertenece a acciones del proyecto "Métodos numéricos para problemas en múltiples escalas", asociado al Programa Nacional de Ciencias Básicas, Código PN223LH010-003, Ministerio de Ciencia, Tecnología y Medio Ambiente (CITMA), Cuba, 2021-2023.

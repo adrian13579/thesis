@@ -17,7 +17,8 @@
 @book{daubechies1992,
    author = {I Daubechies},
    title = {Ten lectures on wavelets},
-   url = {https://epubs.siam.org/doi/pdf/10.1137/1.9781611970104.fm},
+   doi = {10.1137/1.9781611970104},
+   publisher = {SIAM},
    year = {1992},
 }
 
@@ -45,7 +46,6 @@
    publisher = {Elsevier B.V.},
    title = {Fusing time, frequency and shape-related information: Introduction to the Discrete Shapelet Transform’s second generation (DST-II)},
    volume = {41},
-   url = {https://linkinghub.elsevier.com/retrieve/pii/S1566253517301999},
    year = {2018},
 }
 
@@ -90,7 +90,6 @@
 
 @article{Lee2019, 
 	doi = {10.21105/joss.01237}, 
-	url = {https://doi.org/10.21105/joss.01237}, 
 	year = {2019}, publisher = {The Open Journal}, 
 	volume = {4}, number = {36}, pages = {1237}, 
 	author = {Gregory R. Lee and Ralf Gommers and Filip Waselewski and Kai Wohlfahrt and Aaron O'Leary}, 
@@ -162,11 +161,15 @@ month = {8}
   publisher={IEEE}
 }
 
-@report{lifting,
-   abstract = {We present the lifting scheme, a simple construction of second generation wavelets; these are wavelets that are not necessarily translates and dilates of one fixed function. Such wavelets can be adapted to intervals, domains, surfaces, weights, and irregular samples. We show how the lifting scheme leads to a faster, in-place calculation of the wavelet transform. Several examples are included. 1. Introduction. Wavelets form a versatile tool for representing general functions or data sets. Essentially we can think of them as data building blocks. Their fundamental property is that they allow for representations which are efficient and which can be computed fast. In other words, wavelets are capable of quickly capturing the essence of a data set with only a small set of coefficients. This is based on the fact that most data sets have correlation both in time (or space) and frequency. Because of the time-frequency localization of wavelets, efficient representations can be obtained. Indeed, building blocks which already reflect the correlation present in the data lead to more compact representations. This is the key to applications. Over the last decade wavelets have found applications in numerous areas of mathematics, engineering, computer science, statistics, physics, etc. Wavelet functions ψ j,m are traditionally defined as the dyadic translates and dilates of one particular L 2 (R) function, the mother wavelet ψ: ψ j,m (x) = ψ(2 j x−m). We refer to such wavelets as first generation wavelets. In this paper we introduce a more general setting where the wavelets are not necessarily translates and dilates of each other but still enjoy all the powerful properties of first generation wavelets. These wavelets are referred to as second generation wavelets. We present the lifting scheme, a simple, but quite powerful, tool to construct second generation wavelets. Before we consider the generalization to the second generation case, let us review the properties of first generation wavelets which we would like to preserve. P1: Wavelets form a Riesz basis for L 2 (R) and an unconditional basis for a wide variety of function spaces F, such as Lebesgue, Lipschitz, Sobolev, and Besov spaces. If we denote the wavelet basis by \{ψ j,m | j, m\}, we can represent a general function f in F as f =},
-   keywords = {lifting scheme AMS subject classification 42C15,multiresolution,second generation wavelet,wavelet},
-   title = {THE LIFTING SCHEME: A CONSTRUCTION OF SECOND GENERATION WAVELETS *},
-   url = {http://www.siam.org/journals/ojsa.php},
+@article{lifting,
+  title={The lifting scheme: A construction of second generation wavelets},
+  author={Sweldens, Wim},
+  journal={SIAM journal on mathematical analysis},
+  volume={29},
+  number={2},
+  pages={511--546},
+  year={1998},
+  publisher={SIAM}
 }
 
 @inproceedings{Mesa2005AdaptedWF,
@@ -179,8 +182,11 @@ month = {8}
 @report{Grasemann2004,
    abstract = {Finding a good wavelet for a particular application and type of input data is a difficult problem. Traditional methods of wavelet design focus on abstract properties of the wavelet that can be optimized analytically but whose influence on its real-world performance are not entirely understood. In this paper, a coevolutionary genetic algorithm is developed that searches the space of biorthogonal wavelets. The lifting technique, which defines a wavelet as a sequence of digital filters, provides a compact representation and an efficient way of handling necessary constraints. The algorithm is applied to a signal compression task with good results.},
    author = {Uli Grasemann and Risto Miikkulainen},
-   title = {LNCS 3103 - Evolving Wavelets Using a Coevolutionary Genetic Algorithm and Lifting},
+   title = {Evolving Wavelets Using a Coevolutionary Genetic Algorithm and Lifting},
    year = {2004},
+   pages={969--980},
+   organization={Springer},
+   doi = {10.1007/978-3-540-24855-2_109},
 }
 
 @article{Gouze2004,
@@ -223,6 +229,7 @@ month = {8}
    doi = {10.1016/B978-0-12-374370-1.X0001-8},
    journal = {A Wavelet Tour of Signal Processing: The Sparse Way},
    title = {A Wavelet Tour of Signal Processing: The Sparse Way},
+   publisher = {Elsevier},
    year = {2008},
 }
 
@@ -234,6 +241,7 @@ month = {8}
    journal = {The Analytical Theory of Heat},
    title = {The analytical theory of heat},
    year = {2009},
+   publisher = {Cambridge University Press}
 }
 
 @article{Haar1910,
@@ -374,7 +382,6 @@ month = {8}
    publisher = {Springer Science and Business Media Deutschland GmbH},
    title = {Discrete Wavelet Transform-Based Fusion of Mammogram Images for Contrast Improvement},
    volume = {838},
-   url = {https://link.springer.com/chapter/10.1007/978-981-16-8550-7_20},
    year = {2022},
 }
 
@@ -400,12 +407,13 @@ month = {8}
    doi = {10.1007/b97841},
    journal = {An Introduction to Wavelets Through Linear Algebra},
    title = {An Introduction to Wavelets Through Linear Algebra},
+   publisher = {Springer Science and Business Media},
    year = {1999},
 }
 
 @book{Gilbert95,
 	title={ Wavelets and filter banks },
-	authors={ Gilbert Strang and Truong Q. Nguyen },
+	author={ Gilbert Strang and Truong Q. Nguyen },
 	year={ 1995 },
 }
 
@@ -414,6 +422,7 @@ month = {8}
    author = {Jose Maria Giron-Sierra},
    doi = {10.1007/978-981-10-2537-2_4},
    title = {Wavelet Variants for 2D Analysis},
+   publisher={Springer},
    year = {2017},
 }
 
@@ -467,7 +476,6 @@ month = {8}
   publisher    = {Zenodo},
   version      = {v2.1.2},
   doi          = {10.5281/zenodo.4313150},
-  url          = {https://doi.org/10.5281/zenodo.4313150}
 }
 
 
@@ -504,10 +512,12 @@ month = {8}
   publisher={Iste London, UK:}
 }
 
-@inproceedings{Recoskie2018LearningSO,
-  title={Learning Sparse Orthogonal Wavelet Filters},
-  author={Daniel Recoskie},
-  year={2018}
+@report{Recoskie2018,
+   author = {Daniel Recoskie},
+   city = {Waterloo, Ontario, Canada},
+   institution = {University of Waterloo},
+   title = {Learning Sparse Orthogonal Wavelet Filters},
+   year = {2018},
 }
 
 @article{floryan,
@@ -515,7 +525,10 @@ month = {8}
    author = {Daniel Floryan and Michael D Graham and David A Weitz},
    doi = {10.1073/pnas.2021299118/-/DCSupplemental.y},
    title = {Discovering multiscale and self-similar structure with data-driven wavelets},
-   url = {https://doi.org/10.1073/pnas.2021299118},
+   journal={Proceedings of the National Academy of Sciences},
+   volume={118},
+   number={1},
+   publisher={National Acad Sciences},
 }
 
 
@@ -569,17 +582,7 @@ number = {3},
 pages = {803-825},
 year = {2022},
 doi = {10.1177/14759217211010261},
-
-URL = { 
-        https://doi.org/10.1177/14759217211010261
-    
-},
-eprint = { 
-        https://doi.org/10.1177/14759217211010261
-    
-}
-,
-    abstract = { A critical problem encountered in structural health monitoring of civil engineering structures, and other structures such as mechanical or aircraft structures, is how to convincingly analyze the nonstationary data that is coming online, how to reduce the high-dimensional features, and how to extract informative features associated with damage to infer structural conditions. Wavelet transform among other techniques has proven to be an effective technique for processing and analyzing nonstationary data due to its unique characteristics. However, the biggest challenge frequently encountered in assuring the effectiveness of wavelet transform in analyzing massive nonstationary data from civil engineering structures, and in structural health diagnosis, is how to select the right wavelet. The question of which wavelet function is appropriate for processing and analyzing the nonstationary data in civil engineering structures has not been clearly addressed, and no clear guidelines or rules have been reported in the literature to show how the right wavelet is chosen. Therefore, this study aims to address an important question in this regard by proposing a new framework for choosing a proper wavelet that can be customized for massive nonstationary data analysis, disturbances separation, and extraction of informative features associated with damage. The proposed method takes into account data type, data and wavelet characteristics, similarity, sharing information, and data recovery accuracy. The novelty of this study lies in integrating multi-criteria which are associated directly with features that correlated well with change in structures due to damage, including common criteria such as energy, entropy, linear correlation index, and variance. Also, it introduces and considers new proposed measures, such as wavelet-based nonlinear correlation such as cosh spectral distance and mutual information, wavelet-based energy fluctuation, measures-based recovery accuracy, such as sensitive feature extraction, noise reduction, and others to evaluate various base wavelets’ function capabilities for appropriate decomposition and reconstruction of structural dynamic responses. The proposed method is verified by experimental and simulated data. The results revealed that the proposed method has a satisfactory performance for base wavelet selection and the small order of Daubechies and Symlet provide the best results, especially order 3. The idea behind our proposed framework can be applied to other structural applications. }
+abstract = { A critical problem encountered in structural health monitoring of civil engineering structures, and other structures such as mechanical or aircraft structures, is how to convincingly analyze the nonstationary data that is coming online, how to reduce the high-dimensional features, and how to extract informative features associated with damage to infer structural conditions. Wavelet transform among other techniques has proven to be an effective technique for processing and analyzing nonstationary data due to its unique characteristics. However, the biggest challenge frequently encountered in assuring the effectiveness of wavelet transform in analyzing massive nonstationary data from civil engineering structures, and in structural health diagnosis, is how to select the right wavelet. The question of which wavelet function is appropriate for processing and analyzing the nonstationary data in civil engineering structures has not been clearly addressed, and no clear guidelines or rules have been reported in the literature to show how the right wavelet is chosen. Therefore, this study aims to address an important question in this regard by proposing a new framework for choosing a proper wavelet that can be customized for massive nonstationary data analysis, disturbances separation, and extraction of informative features associated with damage. The proposed method takes into account data type, data and wavelet characteristics, similarity, sharing information, and data recovery accuracy. The novelty of this study lies in integrating multi-criteria which are associated directly with features that correlated well with change in structures due to damage, including common criteria such as energy, entropy, linear correlation index, and variance. Also, it introduces and considers new proposed measures, such as wavelet-based nonlinear correlation such as cosh spectral distance and mutual information, wavelet-based energy fluctuation, measures-based recovery accuracy, such as sensitive feature extraction, noise reduction, and others to evaluate various base wavelets’ function capabilities for appropriate decomposition and reconstruction of structural dynamic responses. The proposed method is verified by experimental and simulated data. The results revealed that the proposed method has a satisfactory performance for base wavelet selection and the small order of Daubechies and Symlet provide the best results, especially order 3. The idea behind our proposed framework can be applied to other structural applications. }
 }
 
 
@@ -588,7 +591,24 @@ eprint = {
    abstract = {Wavelet transform has been widely used in biological signal processing since last decade. The success in the wavelet results relies on the proper selection of the mother wavelet function. In this document the wavelet function is customized to the application. Mention approach is possible by means of the Discrete Lifting Shapelet Transform (DLST), a novel transform introduced here and use to generate mother wavelets that resemble the shape of a match pattern and the time-frequency information within. The DLST is inspired on two works: the Discrete Shapelet Transform and the Signal-Dependent Filter Banks. Comparison results are given ensuring the efficacy of the proposed transform in the framework of hand movement recognition using electromyographic signals.},
    author = {Ruben-Dario Pinzon-Morales and Alvaro-Angel Orozco-Gutierrez and Cesar-German Castellanos and Rodrigo Capobianco Guido},
    title = {The Discrete Lifting Shapelet Transform for Biological Pattern Recognition},
+   booktitle={2011 5th International IEEE/EMBS Conference on Neural Engineering},
+   pages={438--441},
+   year={2011},
+   organization={IEEE}
 }
+ @article{CIFUENTES2010,
+   title = {Uso de tests diagnósticos en la práctica clínica (Parte 2): Aplicación clínica y utilidad de un test diagnóstico},
+   journal = {Revista chilena de infectología},
+   author={Cifuentes A, Lorena AND Cerda L, Jaime},
+   ISSN = {0716-1018},
+   language = {es},
+   volume = {27},
+   year = {2010},
+   month = {08},
+   pages = {316 - 319},
+   doi = {10.4067/S0716-10182010000500005},
+   }
+
 @misc{wikipedia_2022_confusion_matrix, 
 title={Confusion matrix}, 
 url={https://en.wikipedia.org/wiki/Confusion_matrix}, 
@@ -596,6 +616,19 @@ journal={Wikipedia},
 publisher={Wikimedia Foundation}, 
 year={2022}, 
 month={Aug}} 
+
+@article{CERDA2012,
+   title = {Uso de curvas ROC en investigación clínica: Aspectos técnico-prácticos},
+   journal = {Revista chilena de infectología},
+   author={Cerda, Jaime AND Cifuentes, Lorena},
+   ISSN = {0716-1018},
+   language = {es},
+   volume = {29},
+   year = {2012},
+   month = {04},
+   pages = {138 - 141},
+   doi = {10.4067/S0716-10182012000200003},
+   }
 
 @misc{wikipedia_2022_roc, 
 title={Receiver operating characteristic}, 
@@ -612,15 +645,17 @@ month={Oct}}
    issue = {7},
    journal = {Communications of the ACM},
    title = {Numerical Analysis, 10th ed.},
+   isbn = {978-1-305-25366-7},
+   publisher = {Cengage Learning},
    volume = {10},
    year = {2016},
 }
 
 
 @inproceedings{broyden,
-   author = {BART VAN DE ROTTEN and SJOERD VERDUYN LUNEL},
+   author = {Bart Van de Rotten and Sjoerd Verduyn Lunel},
    doi = {10.1142/9789812702067_0021},
-   title = {A LIMITED MEMORY BROYDEN METHOD TO SOLVE HIGH-DIMENSIONAL SYSTEMS OF NONLINEAR EQUATIONS},
+   title = {A Limited Memory Broyden Method To Solve High-Dimensional Systems of Nonlinear Equations},
    year = {2005},
 }
 
@@ -645,7 +680,6 @@ month={Oct}}
   isbn={9780898713527},
   lccn={lc95032249},
   series={Frontiers in Applied Mathematics},
-  url={https://books.google.com.cu/books?id=3J4XEAooQOoC},
   year={1995},
   publisher={Society for Industrial and Applied Mathematics}
 }
@@ -655,3 +689,13 @@ month={Oct}}
   author={Madsen, Kaj and Nielsen, Hans Bruun and Tingleff, Ole},
   year={2004}
 }
+
+@inproceedings{lourakis,  
+author={Lourakis, M.L.A. and Argyros, A.A.},  
+booktitle={Tenth IEEE International Conference on Computer Vision (ICCV'05) Volume 1},  
+title={Is Levenberg-Marquardt the most efficient optimization algorithm for implementing bundle adjustment?},  
+year={2005},  
+volume={2},  
+pages={1526-1531 Vol. 2},  
+publisher={IEEE},
+doi={10.1109/ICCV.2005.128}}

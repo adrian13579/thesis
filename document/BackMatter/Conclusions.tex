@@ -1,23 +1,34 @@
 \begin{conclusions}
-	En este trabajo se replicó un algoritmo para la detección de patrones en señales unidimensionales
-	y se exploraron vías para la extensión del mismo al caso bidimensional, explorando los resultados 
-	de estas propuestas en señales artificiales y aplcándolo a la detección de masas en mamografías.
+	En este trabajo se replicó el algoritmo de la DST-II para la detección de patrones en 
+	señales unidimensionales
+	y se exploraron vías para la extensión del mismo al caso bidimensional, aplicando 
+	estas propuestas en señales artificiales y en la detección de masas en mamografías.
 	
-	La replicación del algoritmo logró encontrar un error en la definición de las ecuaciones de \textit{matching}
-	en el artículo original, que al parecer debe ser un error de edición, porque de lo contrario no se hubieran
-	podido lograr reproducir los resultados presentados en el artículo. Teniendo en cuenta esto último, se puede
-	decir que se logró replicar el algoritmo exitosamente. Sin embargo, también se encontraron deficiencias en el
-	mismo. Se pudo comprobar que el resultado de la DST-II en la detección de patrones depende en gran medida
-	de la calidad de la solución numérica encontrada, si el error es alto no se logra una diferencia marcada
+	La replicación del algoritmo logró encontrar un error en la definición de las ecuaciones de detección 
+	en el artículo original, provocando un cambio en dichas condiciones. Teniendo en cuenta esto último, se puede
+	decir que se logró replicar el algoritmo exitosamente. 
+	Se compararon distintos métodos de optimización para solucionar el sistema de ecuaciones no lineales, y
+	se obtuvo que los más eficaces son el método de Levenberg-Marquardt y el método híbrido de Powell.
+
+	También se encontraron deficiencias en el
+	algoritmo de la DST-II. Se comprobó que el resultado de la transformada en la detección 
+	de patrones depende en gran medida
+	de la calidad de la solución numérica encontrada. Si el error es alto, no se logra una diferencia marcada
 	entre el punto donde se encuentra el patrón y el resto. De los métodos probados, cuando el sistema contaba
-	con más de 24 variables la gran mayoría de las veces no se alcanzaba convergencia, por lo que influía 
+	con más de 24 variables, la mayoría de las veces no se alcanzó la convergencia, lo que influyó 
 	directamente en la capacidad del algoritmo para detectar el patrón. Otra deficiencia encontrada del 
-	algoritmo es su sensibilidad ante el ruido, es decir, solo es capaz de detectar al patrón exacto con el cúal 
-	se diseñó la shapelet. 
+	algoritmo es su sensibilidad ante el ruido, es decir, solo es capaz de detectar al patrón exacto con el cual 
+	se diseñó la \textit{shapelet}. Esto es consecuencia de las condiciones de detección, que son muy estrictas.
+
+	En el caso 2D, se exploró tres alternativas. Se evaluaron las mismas en señales artificiales que incluyen
+	gaussianas, círculos y regiones rectangulares en distintas configuraciones. Se logró identificar
+	las deficiencias de cada una de estas alternativas. También se usaron y evaluaron las tres
+	propuestas en la detección de anomalías de tipo masa en mamografías.
 	 
 	Por último, la principal conclusión de esta tesis es que debido a las características del algoritmo (sobretodo las 
-	condiciones de \textit{matching}) 
-	no se puede extender al caso 2D, como sucede con otras wavelets. Ninguna de las propuestas mostradas aquí
+	condiciones de detección) 
+	no se pudo extender exitosamente al caso 2D mediante las tres alternativas, como sí sucede con otras wavelets. 
+	Ninguna de las propuestas mostradas aquí
 	resultó ser eficaz, ni para señales artificiales ni para la detección de masas en mamografías.
 
 \end{conclusions}
